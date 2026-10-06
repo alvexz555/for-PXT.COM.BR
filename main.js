@@ -10,18 +10,65 @@
 const PXT_CONFIG = {
 
     /*
-     * Chave utilizada na URL.
+     * Parâmetro utilizado na URL.
      *
-     * Exemplo:
-     * https://seudominio.com/?ref=pacoca01
+     * Exemplos:
+     *
+     * ?ref=fones01
+     * ?ref=teclado01
+     * ?ref=pacoca01
      */
     refParameter: "ref",
 
     /*
-     * Nome utilizado para guardar a origem
-     * durante a navegação do visitante.
+     * Chave utilizada para manter
+     * a origem durante a navegação.
      */
-    storageKey: "pxt_ref"
+    storageKey: "pxt_ref",
+
+    /*
+     * Categoria relacionada a cada origem.
+     *
+     * O site continua sendo único.
+     *
+     * O ref apenas muda o contexto
+     * inicial da experiência.
+     */
+    refCategories: {
+
+        fone01: "Headsets",
+        fones01: "Headsets",
+        headset01: "Headsets",
+
+        teclado01: "Teclados",
+        teclados01: "Teclados",
+
+        mouse01: "Mouses",
+        mouses01: "Mouses",
+
+        monitor01: "Monitores",
+        monitores01: "Monitores",
+
+        cadeira01: "Cadeiras",
+        cadeiras01: "Cadeiras",
+
+        streaming01: "Streaming",
+
+        hardware01: "Hardware",
+
+        console01: "Controles",
+        controles01: "Controles",
+
+        /*
+         * Exemplo de origem externa.
+         *
+         * Ainda não força uma categoria.
+         * Podemos definir o comportamento
+         * específico dela depois.
+         */
+        pacoca01: null
+
+    }
 
 };
 
@@ -126,61 +173,210 @@ const products = [
 
 
 /* =========================================
+   STORAGE SEGURO
+========================================= */
+
+function saveRef(ref) {
+
+    try {
+
+        localStorage.setItem(
+            PXT_CONFIG.storageKey,
+            ref
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.warn(
+            "[PXT] Não foi possível salvar a origem.",
+            error
+        );
+
+        return false;
+    }
+
+}
+
+
+function getStoredRef() {
+
+    try {
+
+        return localStorage.getItem(
+            PXT_CONFIG.storageKey
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "[PXT] Não foi possível recuperar a origem.",
+            error
+        );
+
+        return null;
+    }
+
+}
+
+
+/* =========================================
    ORIGEM DO VISITANTE
 ========================================= */
 
 function captureRef() {
 
-    const params = new URLSearchParams(window.location.search);
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-    const ref = params.get(PXT_CONFIG.refParameter);
+    const ref =
+        params.get(
+            PXT_CONFIG.refParameter
+        );
 
-    if (!ref) {
-        return;
-    }
 
     /*
-     * Guarda a origem para que ela sobreviva
-     * durante a navegação no site.
+     * Nenhuma origem nova.
+     *
+     * Mantemos a origem anteriormente
+     * registrada.
      */
-    localStorage.setItem(
-        PXT_CONFIG.storageKey,
-        ref
-    );
+    if (!ref) {
+
+        return getStoredRef();
+
+    }
+
+
+    /*
+     * Normalização:
+     *
+     * FONE01
+     * Fone01
+     * fone01
+     *
+     * passam a ser tratados como:
+     *
+     * fone01
+     */
+    const normalizedRef =
+        ref.trim().toLowerCase();
+
+
+    saveRef(normalizedRef);
+
 
     console.log(
         "[PXT] Origem registrada:",
-        ref
+        normalizedRef
     );
+
+
+    return normalizedRef;
+
 }
 
 
 /* =========================================
-   RECUPERAR ORIGEM
+   RECUPERAR ORIGEM ATUAL
 ========================================= */
 
 function getCurrentRef() {
 
-    return localStorage.getItem(
-        PXT_CONFIG.storageKey
-    );
+    return getStoredRef();
 
 }
 
 
 /* =========================================
-   EVENTO DE ACESSO
+   IDENTIFICAR CATEGORIA DA ORIGEM
 ========================================= */
 
-function trackPageView() {
+function getCategoryFromRef(ref) {
 
-    const ref = getCurrentRef();
+    if (!ref) {
+        return null;
+    }
 
-    console.log("[PXT] Page View", {
-        ref: ref || "direto",
-        page: window.location.pathname,
-        timestamp: new Date().toISOString()
-    });
+
+    const category =
+        PXT_CONFIG.refCategories[ref];
+
+
+    if (!category) {
+
+        console.log(
+            "[PXT] Origem sem categoria definida:",
+            ref
+        );
+
+        return null;
+
+    }
+
+
+    return category;
+
+}
+
+
+/* =========================================
+   ORGANIZAR PRODUTOS
+========================================= */
+
+function getOrderedProducts() {
+
+    const ref =
+        getCurrentRef();
+
+    const category =
+        getCategoryFromRef(ref);
+
+
+    /*
+     * Se não existe categoria associada,
+     * mostramos os produtos normalmente.
+     */
+    if (!category) {
+
+        return [...products];
+
+    }
+
+
+    /*
+     * Produtos da categoria relacionada
+     * aparecem primeiro.
+     *
+     * O restante continua disponível.
+     */
+    const prioritized =
+        products.filter(
+            product =>
+                product.category === category
+        );
+
+
+    const remaining =
+        products.filter(
+            product =>
+                product.category !== category
+        );
+
+
+    console.log(
+        "[PXT] Categoria priorizada:",
+        category
+    );
+
+
+    return [
+        ...prioritized,
+        ...remaining
+    ];
 
 }
 
@@ -191,66 +387,163 @@ function trackPageView() {
 
 function createProductCard(product) {
 
-    const card = document.createElement("article");
+    const card =
+        document.createElement("article");
 
-    card.className = "product-card";
+    card.className =
+        "product-card";
 
-    card.dataset.productId = product.id;
+    card.dataset.productId =
+        product.id;
+
+
+    /* -----------------------------------------
+       IMAGEM
+    ----------------------------------------- */
+
+    const image =
+        document.createElement("div");
+
+    image.className =
+        "product-image";
 
 
     /*
-     * Espaço reservado para imagem real.
+     * Se houver caminho de imagem,
+     * tentamos carregar a imagem real.
      */
-    const image = document.createElement("div");
+    if (product.image) {
 
-    image.className = "product-image";
+        const img =
+            document.createElement("img");
 
-    image.innerHTML = `
-        <span>
-            IMAGEM DO PRODUTO
-        </span>
-    `;
+        img.src =
+            product.image;
+
+        img.alt =
+            product.name;
+
+        img.loading =
+            "lazy";
 
 
-    /*
-     * Informações do produto.
-     */
-    const info = document.createElement("div");
+        /*
+         * Se a imagem não existir,
+         * voltamos para o placeholder.
+         */
+        img.addEventListener(
+            "error",
+            function () {
 
-    info.className = "product-info";
+                image.innerHTML = `
+                    <span>
+                        IMAGEM DO PRODUTO
+                    </span>
+                `;
 
-    info.innerHTML = `
+            },
+            {
+                once: true
+            }
+        );
 
-        <span class="product-category">
-            ${product.category}
-        </span>
 
-        <h3 class="product-name">
-            ${product.name}
-        </h3>
+        image.appendChild(img);
 
-        <div class="product-price">
-            ${product.price}
-        </div>
+    } else {
 
-        <a
-            href="${product.affiliateUrl}"
-            class="product-button affiliate-link"
-            data-product-id="${product.id}"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Ver produto
-        </a>
+        image.innerHTML = `
+            <span>
+                IMAGEM DO PRODUTO
+            </span>
+        `;
 
-    `;
+    }
+
+
+    /* -----------------------------------------
+       INFORMAÇÕES
+    ----------------------------------------- */
+
+    const info =
+        document.createElement("div");
+
+    info.className =
+        "product-info";
+
+
+    const category =
+        document.createElement("span");
+
+    category.className =
+        "product-category";
+
+    category.textContent =
+        product.category;
+
+
+    const name =
+        document.createElement("h3");
+
+    name.className =
+        "product-name";
+
+    name.textContent =
+        product.name;
+
+
+    const price =
+        document.createElement("div");
+
+    price.className =
+        "product-price";
+
+    price.textContent =
+        product.price;
+
+
+    /* -----------------------------------------
+       LINK DE PRODUTO
+    ----------------------------------------- */
+
+    const link =
+        document.createElement("a");
+
+    link.className =
+        "product-button affiliate-link";
+
+    link.dataset.productId =
+        product.id;
+
+    link.href =
+        product.affiliateUrl || "#";
+
+    link.target =
+        "_blank";
+
+    link.rel =
+        "noopener noreferrer";
+
+    link.textContent =
+        "Ver produto";
+
+
+    info.appendChild(category);
+
+    info.appendChild(name);
+
+    info.appendChild(price);
+
+    info.appendChild(link);
 
 
     card.appendChild(image);
 
     card.appendChild(info);
 
+
     return card;
+
 }
 
 
@@ -260,23 +553,300 @@ function createProductCard(product) {
 
 function renderProducts() {
 
-    const grid = document.getElementById(
-        "product-grid"
+    const grid =
+        document.getElementById(
+            "product-grid"
+        );
+
+
+    if (!grid) {
+
+        console.warn(
+            "[PXT] #product-grid não encontrado."
+        );
+
+        return;
+
+    }
+
+
+    grid.innerHTML = "";
+
+
+    const orderedProducts =
+        getOrderedProducts();
+
+
+    orderedProducts.forEach(
+        product => {
+
+            const card =
+                createProductCard(product);
+
+            grid.appendChild(card);
+
+        }
     );
+
+
+    console.log(
+        "[PXT] Produtos renderizados:",
+        orderedProducts.length
+    );
+
+}
+
+
+/* =========================================
+   CATEGORIA ATIVA
+========================================= */
+
+function setActiveCategory(category) {
+
+    const cards =
+        document.querySelectorAll(
+            ".category-card"
+        );
+
+
+    cards.forEach(card => {
+
+        const cardCategory =
+            card.dataset.category;
+
+
+        /*
+         * O HTML usa identificadores
+         * em minúsculo.
+         *
+         * Os produtos usam nomes normais.
+         */
+        const normalizedCardCategory =
+            normalizeCategory(
+                cardCategory
+            );
+
+        const normalizedCategory =
+            normalizeCategory(
+                category
+            );
+
+
+        card.classList.toggle(
+            "active",
+            normalizedCardCategory ===
+            normalizedCategory
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   NORMALIZAR CATEGORIA
+========================================= */
+
+function normalizeCategory(category) {
+
+    if (!category) {
+        return "";
+    }
+
+
+    const aliases = {
+
+        headsets: "headsets",
+        fones: "headsets",
+
+        teclados: "teclados",
+
+        mouses: "mouses",
+
+        monitores: "monitores",
+
+        cadeiras: "cadeiras",
+
+        streaming: "streaming",
+
+        hardware: "hardware",
+
+        consoles: "controles",
+        controles: "controles"
+
+    };
+
+
+    const normalized =
+        category
+            .toString()
+            .trim()
+            .toLowerCase();
+
+
+    return aliases[normalized] ||
+        normalized;
+
+}
+
+
+/* =========================================
+   FILTRAR POR CATEGORIA
+========================================= */
+
+function filterProductsByCategory(category) {
+
+    const grid =
+        document.getElementById(
+            "product-grid"
+        );
+
 
     if (!grid) {
         return;
     }
 
+
+    const normalizedCategory =
+        normalizeCategory(
+            category
+        );
+
+
+    const filteredProducts =
+        products.filter(
+            product =>
+                normalizeCategory(
+                    product.category
+                ) === normalizedCategory
+        );
+
+
+    /*
+     * Se nenhuma categoria for encontrada,
+     * não destruímos a grade.
+     */
+    if (
+        filteredProducts.length === 0
+    ) {
+
+        console.warn(
+            "[PXT] Nenhum produto encontrado para:",
+            category
+        );
+
+        return;
+
+    }
+
+
     grid.innerHTML = "";
 
-    products.forEach(product => {
 
-        const card = createProductCard(product);
+    filteredProducts.forEach(
+        product => {
 
-        grid.appendChild(card);
+            grid.appendChild(
+                createProductCard(product)
+            );
 
-    });
+        }
+    );
+
+
+    setActiveCategory(category);
+
+
+    console.log(
+        "[PXT] Categoria filtrada:",
+        category
+    );
+
+}
+
+
+/* =========================================
+   EVENTOS DAS CATEGORIAS
+========================================= */
+
+function setupCategoryNavigation() {
+
+    const categoryCards =
+        document.querySelectorAll(
+            ".category-card"
+        );
+
+
+    categoryCards.forEach(
+        card => {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    const category =
+                        card.dataset.category;
+
+
+                    filterProductsByCategory(
+                        category
+                    );
+
+
+                    const productsSection =
+                        document.getElementById(
+                            "produtos"
+                        );
+
+
+                    if (productsSection) {
+
+                        productsSection.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   TRACKING DE PÁGINA
+========================================= */
+
+function trackPageView() {
+
+    const ref =
+        getCurrentRef();
+
+
+    const eventData = {
+
+        event: "page_view",
+
+        ref:
+            ref || "direto",
+
+        page:
+            window.location.pathname,
+
+        timestamp:
+            new Date().toISOString()
+
+    };
+
+
+    console.log(
+        "[PXT] Page View:",
+        eventData
+    );
 
 }
 
@@ -287,28 +857,32 @@ function renderProducts() {
 
 function trackProductClick(productId) {
 
-    const ref = getCurrentRef();
+    const ref =
+        getCurrentRef();
+
 
     const eventData = {
 
         event: "affiliate_click",
 
-        ref: ref || "direto",
+        ref:
+            ref || "direto",
 
-        productId: productId,
+        productId:
+            productId,
 
-        timestamp: new Date().toISOString()
+        timestamp:
+            new Date().toISOString()
 
     };
 
 
     /*
      * POR ENQUANTO:
-     * apenas observamos no console.
+     * observação local.
      *
      * FUTURAMENTE:
-     * enviar para uma solução real
-     * de analytics/tracking.
+     * analytics / tracking real.
      */
 
     console.log(
@@ -334,12 +908,15 @@ function setupAffiliateTracking() {
                     ".affiliate-link"
                 );
 
+
             if (!link) {
                 return;
             }
 
+
             const productId =
                 link.dataset.productId;
+
 
             trackProductClick(
                 productId
@@ -352,18 +929,95 @@ function setupAffiliateTracking() {
 
 
 /* =========================================
+   CONTEXTO INICIAL
+========================================= */
+
+function applyInitialContext() {
+
+    const ref =
+        getCurrentRef();
+
+
+    const category =
+        getCategoryFromRef(ref);
+
+
+    if (!category) {
+
+        console.log(
+            "[PXT] Nenhum contexto de categoria.",
+            ref || "acesso direto"
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Apenas marca a categoria.
+     *
+     * Os produtos já foram ordenados
+     * pelo getOrderedProducts().
+     */
+    setActiveCategory(
+        category
+    );
+
+
+    console.log(
+        "[PXT] Contexto inicial aplicado:",
+        {
+            ref: ref,
+            category: category
+        }
+    );
+
+}
+
+
+/* =========================================
    INICIALIZAÇÃO
 ========================================= */
 
 function initPXT() {
 
+    /*
+     * 1. Captura a origem.
+     */
     captureRef();
 
+
+    /*
+     * 2. Renderiza produtos,
+     * já respeitando a origem.
+     */
     renderProducts();
 
+
+    /*
+     * 3. Aplica contexto visual.
+     */
+    applyInitialContext();
+
+
+    /*
+     * 4. Registra page view.
+     */
     trackPageView();
 
+
+    /*
+     * 5. Ativa tracking dos produtos.
+     */
     setupAffiliateTracking();
+
+
+    /*
+     * 6. Ativa navegação das categorias.
+     */
+    setupCategoryNavigation();
+
 
     console.log(
         "[PXT] Sistema inicializado."
@@ -371,6 +1025,10 @@ function initPXT() {
 
 }
 
+
+/* =========================================
+   START
+========================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
