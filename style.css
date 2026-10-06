@@ -752,5 +752,8 @@ img {
     .footer-content {
         flex-direction: column;
     }
+   body {
+    background: red !important;
+}
 
 }
