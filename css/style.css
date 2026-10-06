@@ -1,24 +1,15 @@
-```css
 /* =========================================================
    PXT FONES | PIXEL STORY
-   CSS principal
-   Visual: preto contínuo, limpo e focado em produto
+   MODO DIAGNÓSTICO VISUAL
+   Fundo branco / texto preto / botões cinza
+   ========================================================= */
+
+
+/* =========================================================
+   CONFIGURAÇÕES
    ========================================================= */
 
 :root {
-  --bg: #050505;
-  --bg-header: rgba(5, 5, 5, 0.88);
-
-  --text: #f7f7f7;
-  --text-soft: #b8b8b8;
-  --text-muted: #777;
-
-  --line: rgba(255, 255, 255, 0.10);
-  --line-strong: rgba(255, 255, 255, 0.18);
-
-  --white: #ffffff;
-  --black: #050505;
-
   --container: 1180px;
 
   --radius-sm: 10px;
@@ -27,6 +18,7 @@
 
   --transition: 180ms ease;
 }
+
 
 /* =========================================================
    RESET
@@ -40,14 +32,19 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--bg);
+
+  /* Fundo geral */
+  background: #ffffff;
 }
 
 body {
   min-height: 100vh;
 
-  background: var(--bg);
-  color: var(--text);
+  /* Fundo geral */
+  background: #ffffff;
+
+  /* Todo texto */
+  color: #000000;
 
   font-family:
     Inter,
@@ -63,7 +60,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -78,9 +75,10 @@ a {
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
+  background: #d0d0d0;
+  color: #000000;
 }
+
 
 /* =========================================================
    BASE
@@ -93,7 +91,9 @@ a {
 
 .section {
   padding: 110px 0;
-  background: var(--bg);
+
+  /* Fundo das seções */
+  background: #ffffff;
 }
 
 .section-heading {
@@ -101,13 +101,24 @@ a {
   margin-bottom: 48px;
 }
 
+
+/* =========================================================
+   TEXTOS GERAIS
+   ========================================================= */
+
+/* PIXEL STORY • PXT FONES */
+/* COMEÇE PELO SEU USO */
+/* SELEÇÃO PXT */
+/* PXT FONES */
+/* SOBRE O PXT */
 .section-label,
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 
-  color: var(--text-muted);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.7rem;
   font-weight: 800;
@@ -115,24 +126,31 @@ a {
   text-transform: uppercase;
 }
 
+
+/* Títulos das seções */
 .section-heading h2 {
   margin-top: 12px;
 
-  color: var(--text);
+  /* Texto */
+  color: #000000;
 
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1.05;
   letter-spacing: -0.045em;
 }
 
+
+/* Descrições das seções */
 .section-heading p {
   max-width: 650px;
   margin-top: 18px;
 
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 
   font-size: 1rem;
 }
+
 
 /* =========================================================
    HEADER
@@ -143,12 +161,10 @@ a {
   top: 0;
   z-index: 100;
 
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #cccccc;
 
-  background: var(--bg-header);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* Fundo */
+  background: #ffffff;
 }
 
 .header-inner {
@@ -160,12 +176,15 @@ a {
   gap: 30px;
 }
 
+
+/* PXT Fones */
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 
-  color: var(--text);
+  /* Texto */
+  color: #000000;
 
   font-size: 1.05rem;
   font-weight: 800;
@@ -173,12 +192,16 @@ a {
   white-space: nowrap;
 }
 
+
+/* PXT */
 .brand-pixel {
-  color: #fff;
+  /* Texto */
+  color: #000000;
 
   font-weight: 950;
   letter-spacing: -0.08em;
 }
+
 
 .main-nav {
   display: flex;
@@ -186,10 +209,13 @@ a {
   gap: 30px;
 }
 
+
+/* Início / Fones / Escolha */
 .main-nav a {
   position: relative;
 
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.88rem;
   font-weight: 650;
@@ -199,6 +225,8 @@ a {
     transform var(--transition);
 }
 
+
+/* Linha de Início / Fones / Escolha */
 .main-nav a::after {
   content: "";
 
@@ -209,7 +237,8 @@ a {
 
   height: 1px;
 
-  background: #fff;
+  /* Linha */
+  background: #000000;
 
   transform: scaleX(0);
   transform-origin: center;
@@ -217,8 +246,10 @@ a {
   transition: transform var(--transition);
 }
 
+
+/* Início / Fones / Escolha */
 .main-nav a:hover {
-  color: #fff;
+  color: #000000;
   transform: translateY(-1px);
 }
 
@@ -226,11 +257,8 @@ a {
   transform: scaleX(1);
 }
 
-/*
-  Este é o único botão extra do cabeçalho.
-  Mantemos discreto para não competir com o CTA principal.
-*/
 
+/* Encontrar meu fone */
 .header-button {
   display: inline-flex;
   align-items: center;
@@ -239,12 +267,14 @@ a {
   min-height: 42px;
   padding: 0 18px;
 
-  border: 1px solid var(--line-strong);
+  border: 1px solid #999999;
   border-radius: 999px;
 
-  background: transparent;
+  /* Botão */
+  background: #d0d0d0;
 
-  color: var(--text);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.82rem;
   font-weight: 750;
@@ -256,13 +286,16 @@ a {
     transform var(--transition);
 }
 
+
+/* Encontrar meu fone - interação */
 .header-button:hover {
-  background: #fff;
-  border-color: #fff;
-  color: #050505;
+  background: #aaaaaa;
+  border-color: #888888;
+  color: #000000;
 
   transform: translateY(-2px);
 }
+
 
 /* =========================================================
    HERO
@@ -276,71 +309,49 @@ a {
   display: flex;
   align-items: center;
 
-  overflow: hidden;
+  /* Fundo */
+  background: #ffffff;
 
-  background: var(--bg);
-
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #cccccc;
 }
 
-/*
-  Nada de bloco azul atrás do hero.
-  Apenas um brilho quase imperceptível.
-*/
 
+/* Removemos as camadas decorativas do Hero */
 .hero::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 78% 38%,
-      rgba(255, 255, 255, 0.045),
-      transparent 28rem
-    );
+  display: none;
 }
 
+
+/* Removemos o brilho do Hero */
 .hero-glow {
-  position: absolute;
-
-  width: 520px;
-  height: 520px;
-
-  right: 3%;
-  top: 50%;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.055),
-      transparent 68%
-    );
-
-  filter: blur(25px);
-
-  transform: translateY(-50%);
-
-  pointer-events: none;
+  display: none;
 }
 
+
+/* Conteúdo do Hero */
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 
   padding: 100px 0;
 }
 
+
+/* PIXEL STORY • PXT FONES */
+.hero .eyebrow {
+  /* Texto */
+  color: #000000;
+}
+
+
+/* O fone certo muda
+   o jeito de ouvir. */
 .hero h1 {
   max-width: 850px;
   margin-top: 20px;
 
-  color: #fff;
+  /* Texto */
+  color: #000000;
 
   font-size: clamp(3.5rem, 8vw, 7.5rem);
   line-height: 0.9;
@@ -348,19 +359,26 @@ a {
   font-weight: 900;
 }
 
+
+/* o jeito de ouvir. */
 .hero h1 span {
-  color: #fff;
+  /* Texto */
+  color: #000000;
 }
 
+
+/* Uma seleção direta de fones... */
 .hero-content > p {
   max-width: 620px;
   margin-top: 30px;
 
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 
   font-size: clamp(1rem, 1.7vw, 1.15rem);
   line-height: 1.75;
 }
+
 
 .hero-actions {
   display: flex;
@@ -369,6 +387,7 @@ a {
 
   margin-top: 34px;
 }
+
 
 .button {
   display: inline-flex;
@@ -394,30 +413,48 @@ a {
   transform: translateY(-2px);
 }
 
+
+/* Ver fones */
 .button-primary {
-  color: #050505;
-  background: #fff;
+  /* Botão */
+  background: #d0d0d0;
 
-  border: 1px solid #fff;
+  /* Texto */
+  color: #000000;
+
+  border: 1px solid #999999;
 }
 
+
+/* Ver fones - interação */
 .button-primary:hover {
-  background: #e9e9e9;
+  background: #aaaaaa;
+  border-color: #888888;
+  color: #000000;
 }
 
+
+/* Qual combina comigo? */
 .button-secondary {
-  color: #fff;
+  /* Botão */
+  background: #d0d0d0;
 
-  background: transparent;
+  /* Texto */
+  color: #000000;
 
-  border: 1px solid var(--line-strong);
+  border: 1px solid #999999;
 }
 
+
+/* Qual combina comigo? - interação */
 .button-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.28);
+  background: #aaaaaa;
+  border-color: #888888;
+  color: #000000;
 }
 
+
+/* 🎧 Foco em áudio / ↗ Links diretos / ◈ Seleção simples */
 .hero-points {
   display: flex;
   flex-wrap: wrap;
@@ -425,31 +462,37 @@ a {
 
   margin-top: 40px;
 
-  color: var(--text-muted);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.78rem;
   font-weight: 650;
 }
+
 
 /* =========================================================
    ESCOLHA
    ========================================================= */
 
 .choice-section {
-  background: var(--bg);
+  /* Fundo */
+  background: #ffffff;
 
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #cccccc;
 }
+
 
 .use-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
 
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
 }
 
+
+/* Música / Jogos / Estudos / Rotina */
 .use-card {
   min-height: 190px;
   padding: 28px;
@@ -460,71 +503,85 @@ a {
   flex-direction: column;
   justify-content: flex-end;
 
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 
-  background: transparent;
+  /* Fundo */
+  background: #ffffff;
 
   transition:
     background var(--transition),
     color var(--transition);
 }
 
+
+/* Ícone de Música / Jogos / Estudos / Rotina */
 .use-card > span {
   position: absolute;
   top: 26px;
   left: 28px;
 
-  color: var(--text-muted);
+  /* Ícone */
+  color: #000000;
 
   font-size: 1.7rem;
 
   transition: color var(--transition);
 }
 
+
+/* Música / Jogos / Estudos / Rotina */
 .use-card strong {
   position: relative;
 
-  color: #fff;
+  /* Texto */
+  color: #000000;
 
   font-size: 1.2rem;
   letter-spacing: -0.025em;
 }
 
+
+/* Descrição dos cards */
 .use-card small {
   position: relative;
 
   margin-top: 7px;
 
-  color: var(--text-muted);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.8rem;
 }
 
+
+/* Card em interação */
 .use-card:hover {
-  background: rgba(255, 255, 255, 0.035);
+  background: #eeeeee;
 }
 
+
+/* Ícone em interação */
 .use-card:hover > span {
-  color: #fff;
+  color: #000000;
 }
 
-/*
-  Remove completamente o círculo decorativo anterior.
-  Ele contribuía para o aspecto de "blocos".
-*/
 
+/* Remover decoração antiga */
 .use-card::before {
   display: none;
 }
+
 
 /* =========================================================
    PRODUTOS
    ========================================================= */
 
 .products-section {
-  background: var(--bg);
+  /* Fundo */
+  background: #ffffff;
 }
+
 
 .products-heading {
   max-width: none;
@@ -535,21 +592,26 @@ a {
   gap: 30px;
 }
 
+
+/* 0 fones */
 .product-count {
   flex-shrink: 0;
 
   padding: 8px 13px;
 
-  border: 1px solid var(--line);
+  border: 1px solid #999999;
   border-radius: 999px;
 
-  background: transparent;
+  /* Fundo */
+  background: #d0d0d0;
 
-  color: var(--text-muted);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.75rem;
   font-weight: 750;
 }
+
 
 .products-grid {
   display: grid;
@@ -557,11 +619,8 @@ a {
   gap: 18px;
 }
 
-/*
-  Cards continuam existindo, mas agora são mais discretos.
-  O produto é o protagonista, não a caixa.
-*/
 
+/* Card do produto */
 .product-card {
   position: relative;
   overflow: hidden;
@@ -571,22 +630,27 @@ a {
 
   min-height: 440px;
 
-  border: 1px solid var(--line);
+  border: 1px solid #999999;
   border-radius: var(--radius-lg);
 
-  background: #080808;
+  /* Fundo */
+  background: #ffffff;
 
   transition:
     transform 220ms ease,
     border-color 220ms ease;
 }
 
+
+/* Card do produto - interação */
 .product-card:hover {
   transform: translateY(-5px);
 
-  border-color: var(--line-strong);
+  border-color: #666666;
 }
 
+
+/* Imagem do produto */
 .product-card img {
   width: 100%;
   height: 260px;
@@ -595,9 +659,12 @@ a {
 
   padding: 28px;
 
-  background: #050505;
+  /* Fundo da imagem */
+  background: #ffffff;
 }
 
+
+/* Conteúdo do produto */
 .product-card-content {
   display: flex;
   flex: 1;
@@ -605,30 +672,38 @@ a {
 
   padding: 24px;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
 }
 
+
+/* Nome do produto */
 .product-card h3 {
-  color: #fff;
+  /* Texto */
+  color: #000000;
 
   font-size: 1.2rem;
   line-height: 1.2;
   letter-spacing: -0.025em;
 }
 
+
+/* Descrição do produto */
 .product-card p {
   margin-top: 9px;
 
-  color: var(--text-muted);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.85rem;
   line-height: 1.6;
 }
 
+
 .product-card .button,
 .product-card a {
   margin-top: auto;
 }
+
 
 /* =========================================================
    MARKETING
@@ -638,64 +713,58 @@ a {
   padding-top: 100px;
   padding-bottom: 110px;
 
-  background: var(--bg);
+  /* Fundo */
+  background: #ffffff;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
 }
 
+
+/* Faixa editorial */
 .marketing-box {
   position: relative;
-  overflow: hidden;
 
   padding: clamp(40px, 7vw, 85px);
 
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 
-  background: transparent;
+  /* Fundo */
+  background: #ffffff;
 }
 
-/*
-  A grande caixa anterior foi removida.
-  A seção agora funciona como uma faixa editorial.
-*/
 
+/* Remover PXT decorativo durante o diagnóstico */
 .marketing-box::after {
-  content: "PXT";
-
-  position: absolute;
-
-  right: -25px;
-  bottom: -70px;
-
-  color: rgba(255, 255, 255, 0.025);
-
-  font-size: 14rem;
-  line-height: 1;
-
-  font-weight: 950;
-  letter-spacing: -0.1em;
-
-  pointer-events: none;
+  display: none;
 }
 
+
+/* Menos procura.
+   Mais decisão. */
 .marketing-box h2 {
   position: relative;
   z-index: 1;
 
   margin-top: 14px;
 
-  color: #fff;
+  /* Texto */
+  color: #000000;
 
   font-size: clamp(2.8rem, 6vw, 5.5rem);
   line-height: 0.92;
   letter-spacing: -0.065em;
 }
 
+
+/* Mais decisão. */
 .marketing-box h2 span {
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 }
 
+
+/* O PXT existe para encurtar o caminho... */
 .marketing-box p {
   position: relative;
   z-index: 1;
@@ -703,9 +772,12 @@ a {
   max-width: 600px;
   margin-top: 25px;
 
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 }
 
+
+/* Explorar seleção */
 .marketing-box .button {
   position: relative;
   z-index: 2;
@@ -713,15 +785,18 @@ a {
   margin-top: 30px;
 }
 
+
 /* =========================================================
    SOBRE
    ========================================================= */
 
 .about-section {
-  background: var(--bg);
+  /* Fundo */
+  background: #ffffff;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
 }
+
 
 .about-grid {
   display: grid;
@@ -730,35 +805,44 @@ a {
   align-items: start;
 }
 
+
+/* Um catálogo pequeno por escolha. */
 .about-grid h2 {
   max-width: 500px;
   margin-top: 12px;
 
-  color: #fff;
+  /* Texto */
+  color: #000000;
 
   font-size: clamp(2rem, 4vw, 3.3rem);
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
+
+/* Texto explicativo do PXT */
 .about-grid > p {
   max-width: 620px;
 
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 
   font-size: 1rem;
   line-height: 1.9;
 }
+
 
 /* =========================================================
    FOOTER
    ========================================================= */
 
 .site-footer {
-  background: var(--bg);
+  /* Fundo */
+  background: #ffffff;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
 }
+
 
 .footer-content {
   min-height: 150px;
@@ -770,16 +854,22 @@ a {
   gap: 30px;
 }
 
+
+/* Pixel Story • foco em fones. */
 .footer-content p {
   margin-top: 8px;
 
-  color: var(--text-muted);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.75rem;
 }
 
+
+/* Voltar ao topo ↑ */
 .footer-content > a {
-  color: var(--text-soft);
+  /* Texto */
+  color: #000000;
 
   font-size: 0.8rem;
   font-weight: 700;
@@ -787,34 +877,42 @@ a {
   transition: color var(--transition);
 }
 
+
+/* Voltar ao topo ↑ - interação */
 .footer-content > a:hover {
-  color: #fff;
+  color: #000000;
 }
 
+
+/* © 2026 Pixel Story. Todos os direitos reservados. */
 .footer-bottom {
   padding: 20px 0;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #cccccc;
 
-  color: #555;
+  /* Texto */
+  color: #000000;
 
   font-size: 0.7rem;
 }
+
 
 /* =========================================================
    ACESSIBILIDADE
    ========================================================= */
 
 :focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #000000;
   outline-offset: 4px;
 }
+
 
 /* =========================================================
    RESPONSIVO
    ========================================================= */
 
 @media (max-width: 980px) {
+
   .use-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -829,7 +927,9 @@ a {
   }
 }
 
+
 @media (max-width: 760px) {
+
   .container {
     width: min(calc(100% - 28px), var(--container));
   }
@@ -892,12 +992,6 @@ a {
     padding: 55px 0;
   }
 
-  .marketing-box::after {
-    font-size: 9rem;
-    right: -20px;
-    bottom: -35px;
-  }
-
   .footer-content {
     min-height: 130px;
 
@@ -910,7 +1004,9 @@ a {
   }
 }
 
+
 @media (max-width: 520px) {
+
   .use-grid {
     grid-template-columns: 1fr;
   }
@@ -937,21 +1033,21 @@ a {
   }
 }
 
+
 /* =========================================================
    REDUÇÃO DE MOVIMENTO
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   html {
     scroll-behavior: auto;
   }
 
   *,
-  *::before,
-  *::after {
+  *::before {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
-```
