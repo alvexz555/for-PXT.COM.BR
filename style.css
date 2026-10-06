@@ -1,6 +1,11 @@
-/* =========================================
+/* =========================================================
+   PXT / PIXEL STORE
+   STYLE.CSS
+   ========================================================= */
+
+/* =========================================================
    RESET
-========================================= */
+   ========================================================= */
 
 * {
     margin: 0;
@@ -13,6 +18,7 @@ html {
 }
 
 body {
+    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
     background: #07080d;
     color: #ffffff;
@@ -22,6 +28,11 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -35,19 +46,22 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    HEADER
-========================================= */
+   ========================================================= */
 
 .site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
 
-    background: rgba(7, 8, 13, 0.88);
-    backdrop-filter: blur(14px);
+    width: 100%;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(7, 8, 13, 0.94);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .header-content {
@@ -64,6 +78,8 @@ img {
     display: flex;
     align-items: center;
     gap: 12px;
+
+    flex-shrink: 0;
 }
 
 .logo-placeholder {
@@ -77,9 +93,14 @@ img {
     border: 1px solid #147cff;
     border-radius: 10px;
 
+    background: rgba(20, 124, 255, 0.08);
+
     color: #147cff;
     font-size: 9px;
-    font-weight: bold;
+    font-weight: 700;
+
+    box-shadow:
+        0 0 20px rgba(20, 124, 255, 0.12);
 }
 
 .brand-name {
@@ -101,6 +122,8 @@ img {
 .main-nav {
     display: flex;
     align-items: center;
+    justify-content: center;
+
     gap: 28px;
 }
 
@@ -108,11 +131,14 @@ img {
     color: #a8adbd;
     font-size: 14px;
 
-    transition: color 0.25s ease;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .main-nav a:hover {
     color: #ffffff;
+    transform: translateY(-1px);
 }
 
 .header-button {
@@ -126,23 +152,53 @@ img {
         #7b3cff
     );
 
+    color: #ffffff;
+
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
+
+    box-shadow:
+        0 0 24px rgba(20, 124, 255, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.header-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 30px rgba(20, 124, 255, 0.25);
 }
 
 
-/* =========================================
+/* =========================================================
    HERO
-========================================= */
+   ========================================================= */
 
 .hero {
+    position: relative;
+
     min-height: 680px;
 
     display: flex;
     align-items: center;
 
-    position: relative;
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(123, 60, 255, 0.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(20, 124, 255, 0.08),
+            transparent 35%
+        ),
+        #07080d;
 }
 
 .hero::before {
@@ -150,38 +206,48 @@ img {
 
     position: absolute;
 
-    width: 600px;
-    height: 600px;
+    width: 650px;
+    height: 650px;
 
-    right: -250px;
-    top: -200px;
+    right: -300px;
+    top: -220px;
 
-    background: rgba(123, 60, 255, 0.16);
-
-    filter: blur(100px);
     border-radius: 50%;
+
+    background: rgba(123, 60, 255, 0.12);
+
+    filter: blur(110px);
+
+    pointer-events: none;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 2;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
     align-items: center;
 
     gap: 60px;
+}
 
-    position: relative;
-    z-index: 2;
+.hero-text {
+    min-width: 0;
 }
 
 .hero-tag,
 .section-heading span,
 .about span,
 .promotion-box span {
+    display: inline-block;
+
     color: #147cff;
 
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
 
     letter-spacing: 2px;
 }
@@ -189,14 +255,18 @@ img {
 .hero h1 {
     margin-top: 18px;
 
-    max-width: 650px;
+    max-width: 680px;
 
     font-size: clamp(44px, 6vw, 76px);
     line-height: 0.98;
+    letter-spacing: -2px;
 }
 
 .hero h1 span {
     color: #147cff;
+
+    text-shadow:
+        0 0 30px rgba(20, 124, 255, 0.18);
 }
 
 .hero p {
@@ -205,11 +275,14 @@ img {
     max-width: 520px;
 
     color: #a8adbd;
+
     font-size: 18px;
 }
 
 .hero-actions {
     display: flex;
+    flex-wrap: wrap;
+
     gap: 14px;
 
     margin-top: 32px;
@@ -221,15 +294,18 @@ img {
     align-items: center;
     justify-content: center;
 
+    min-height: 46px;
+
     padding: 13px 22px;
 
     border-radius: 8px;
 
-    font-weight: bold;
+    font-weight: 700;
 
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .button:hover {
@@ -247,16 +323,32 @@ img {
         0 0 30px rgba(20, 124, 255, 0.18);
 }
 
+.button.primary:hover {
+    box-shadow:
+        0 0 40px rgba(20, 124, 255, 0.28);
+}
+
 .button.secondary {
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    background: rgba(255, 255, 255, 0.02);
 
     color: #ffffff;
 }
 
-.hero-visual {
-    min-height: 430px;
+.button.secondary:hover {
+    border-color: rgba(20, 124, 255, 0.5);
+}
 
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.hero-visual {
     position: relative;
+
+    min-height: 430px;
 
     display: flex;
     align-items: center;
@@ -273,43 +365,51 @@ img {
 
     background: linear-gradient(
         135deg,
-        rgba(20, 124, 255, 0.35),
-        rgba(123, 60, 255, 0.35)
+        rgba(20, 124, 255, 0.38),
+        rgba(123, 60, 255, 0.38)
     );
 
-    filter: blur(55px);
+    filter: blur(60px);
+
+    pointer-events: none;
 }
 
 .hero-placeholder {
-    width: 82%;
-    aspect-ratio: 1;
-
     position: relative;
+    z-index: 2;
+
+    width: min(82%, 430px);
+
+    aspect-ratio: 1;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border: 1px solid rgba(20, 124, 255, 0.3);
+    border: 1px solid rgba(20, 124, 255, 0.35);
 
     border-radius: 24px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(20, 124, 255, 0.08),
-            rgba(123, 60, 255, 0.08)
+            rgba(20, 124, 255, 0.09),
+            rgba(123, 60, 255, 0.09)
         );
 
     color: #777d91;
 
     text-align: center;
+
+    box-shadow:
+        inset 0 0 50px rgba(20, 124, 255, 0.04),
+        0 0 50px rgba(20, 124, 255, 0.08);
 }
 
 
-/* =========================================
+/* =========================================================
    SEÇÕES
-========================================= */
+   ========================================================= */
 
 .categories,
 .products-section,
@@ -328,8 +428,9 @@ img {
     margin-top: 10px;
 
     font-size: clamp(30px, 4vw, 46px);
-
     line-height: 1.1;
+
+    letter-spacing: -1px;
 }
 
 .section-heading p {
@@ -339,36 +440,55 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    CATEGORIAS
-========================================= */
+   ========================================================= */
+
+.categories {
+    background: #07080d;
+}
 
 .category-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 16px;
 }
 
 .category-card {
+    min-height: 145px;
+
     padding: 26px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     border: 1px solid rgba(255, 255, 255, 0.07);
 
     border-radius: 14px;
 
-    background: #0c0e15;
+    background:
+        linear-gradient(
+            145deg,
+            #0c0e15,
+            #0a0c12
+        );
 
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .category-card:hover {
     transform: translateY(-5px);
 
     border-color: rgba(20, 124, 255, 0.5);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
 }
 
 .category-card span {
@@ -382,18 +502,21 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    PRODUTOS
-========================================= */
+   ========================================================= */
 
 .products-section {
     background: #090b11;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.025);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.025);
 }
 
 .product-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 18px;
 }
@@ -408,14 +531,18 @@ img {
     background: #0d1018;
 
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
 
     border-color: rgba(20, 124, 255, 0.45);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .product-image {
@@ -446,7 +573,7 @@ img {
     color: #147cff;
 
     font-size: 11px;
-    font-weight: bold;
+    font-weight: 700;
 
     text-transform: uppercase;
 
@@ -458,14 +585,18 @@ img {
 
     min-height: 48px;
 
+    color: #ffffff;
+
     font-size: 16px;
 }
 
 .product-price {
     margin-top: 14px;
 
+    color: #ffffff;
+
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .product-button {
@@ -485,19 +616,27 @@ img {
 
     cursor: pointer;
 
+    font-family: inherit;
+    font-weight: 700;
+
     transition:
-        background 0.25s ease,
-        color 0.25s ease;
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
 .product-button:hover {
     background: #147cff;
+    color: #ffffff;
 }
 
 
-/* =========================================
+/* =========================================================
    PROMOÇÃO
-========================================= */
+   ========================================================= */
+
+.promotion-section {
+    background: #07080d;
+}
 
 .promotion-box {
     display: flex;
@@ -519,6 +658,9 @@ img {
             rgba(20, 124, 255, 0.08),
             rgba(123, 60, 255, 0.08)
         );
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.18);
 }
 
 .promotion-box h2 {
@@ -538,14 +680,18 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    BENEFÍCIOS
-========================================= */
+   ========================================================= */
+
+.benefits {
+    background: #07080d;
+}
 
 .benefits-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 18px;
 }
@@ -575,7 +721,7 @@ img {
 
     color: #147cff;
 
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .benefit-card h3 {
@@ -591,9 +737,9 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    SOBRE
-========================================= */
+   ========================================================= */
 
 .about {
     background: #090b11;
@@ -602,7 +748,7 @@ img {
 .about-content {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
     gap: 70px;
 
@@ -616,9 +762,9 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    FOOTER
-========================================= */
+   ========================================================= */
 
 .site-footer {
     padding-top: 60px;
@@ -662,6 +808,8 @@ img {
     color: #858b9c;
 
     font-size: 14px;
+
+    transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
@@ -683,9 +831,9 @@ img {
 }
 
 
-/* =========================================
+/* =========================================================
    RESPONSIVO
-========================================= */
+   ========================================================= */
 
 @media (max-width: 950px) {
 
@@ -693,12 +841,13 @@ img {
         display: none;
     }
 
-    .hero-content {
-        grid-template-columns: 1fr;
+    .hero {
+        min-height: auto;
+        padding: 90px 0;
     }
 
-    .hero {
-        padding: 80px 0;
+    .hero-content {
+        grid-template-columns: 1fr;
     }
 
     .hero-visual {
@@ -708,14 +857,14 @@ img {
     .category-grid,
     .product-grid,
     .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .about-content {
         grid-template-columns: 1fr;
     }
-
 }
+
 
 @media (max-width: 600px) {
 
@@ -723,8 +872,20 @@ img {
         display: none;
     }
 
+    .header-content {
+        min-height: 68px;
+    }
+
+    .hero {
+        padding: 70px 0;
+    }
+
     .hero h1 {
         font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 16px;
     }
 
     .hero-actions {
@@ -735,6 +896,22 @@ img {
         width: 100%;
     }
 
+    .hero-visual {
+        min-height: 280px;
+    }
+
+    .hero-placeholder {
+        width: 90%;
+    }
+
+    .categories,
+    .products-section,
+    .benefits,
+    .about,
+    .promotion-section {
+        padding: 75px 0;
+    }
+
     .category-grid,
     .product-grid,
     .benefits-grid {
@@ -743,17 +920,16 @@ img {
 
     .promotion-box {
         flex-direction: column;
-
         align-items: flex-start;
 
         padding: 30px;
     }
 
+    .promotion-box h2 {
+        font-size: 28px;
+    }
+
     .footer-content {
         flex-direction: column;
     }
-   body {
-    background: red !important;
-}
-
 }
