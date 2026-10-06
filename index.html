@@ -2,283 +2,469 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Pixel Store - Tecnologia, periféricos gamers e produtos digitais.">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Pixel Store | Seu Universo Gamer</title>
+    <meta
+        name="description"
+        content="Pixel Story | Tecnologia, produtos e oportunidades selecionadas para você."
+    >
 
-    <link rel="stylesheet" href="css/style.css">
+    <meta
+        name="theme-color"
+        content="#07080d"
+    >
+
+    <title>Pixel Story | PXT</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
 
 <body>
 
-    <!-- =========================================
+    <!-- =========================
          HEADER
-    ========================================== -->
+    ========================== -->
     <header class="site-header">
+        <div class="container header-inner">
 
-        <div class="container header-content">
-
-            <a href="index.html" class="brand">
-                <!-- SUBSTITUIR PELO LOGO REAL -->
-                <div class="logo-placeholder">
-                    LOGO
-                </div>
-
-                <div class="brand-name">
-                    <span>Pixel</span>
-                    <strong>Store</strong>
-                </div>
+            <a
+                href="#home"
+                class="brand"
+                aria-label="Pixel Story - Página inicial"
+            >
+                <!-- Substituir pelo logo oficial depois -->
+                <span class="brand-pixel">Pixel</span>
+                <span class="brand-story">Story</span>
             </a>
 
-            <nav class="main-nav">
-                <a href="#inicio">Home</a>
+            <nav class="main-nav" aria-label="Navegação principal">
+                <a href="#home">Home</a>
                 <a href="#categorias">Categorias</a>
                 <a href="#produtos">Produtos</a>
-                <a href="#promocoes">Promoções</a>
+                <a href="#ofertas">Ofertas</a>
                 <a href="#sobre">Sobre</a>
             </nav>
 
-            <a href="#produtos" class="header-button">
-                Comprar Agora
+            <a
+                href="#produtos"
+                class="header-button"
+            >
+                Explorar
             </a>
 
         </div>
-
     </header>
 
 
     <main>
 
-        <!-- =========================================
+        <!-- =========================
              HERO
-        ========================================== -->
-        <section class="hero" id="inicio">
-
+        ========================== -->
+        <section
+            id="home"
+            class="hero"
+        >
             <div class="container hero-content">
 
-                <div class="hero-text">
+                <span class="hero-tag">
+                    PIXEL STORY • PXT
+                </span>
 
-                    <span class="hero-tag">
-                        TECNOLOGIA • GAMER • DIGITAL
+                <h1>
+                    Encontre o que
+                    <span>você procura.</span>
+                </h1>
+
+                <p>
+                    Tecnologia, acessórios, produtos e oportunidades
+                    selecionadas em um só lugar.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="#produtos"
+                        class="button button-primary"
+                    >
+                        Explorar produtos
+                    </a>
+
+                    <a
+                        href="#categorias"
+                        class="button button-secondary"
+                    >
+                        Ver categorias
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             CATEGORIAS
+        ========================== -->
+        <section
+            id="categorias"
+            class="categories-section section"
+        >
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        CATEGORIAS
                     </span>
 
-                    <h1>
-                        Seu Universo
-                        <span>Gamer</span>
-                        Começa Aqui
-                    </h1>
+                    <h2>
+                        Escolha seu universo.
+                    </h2>
 
                     <p>
-                        Tecnologia, periféricos e acessórios para elevar
-                        sua experiência digital.
+                        Encontre produtos por categoria
+                        e descubra novas oportunidades.
                     </p>
 
-                    <div class="hero-actions">
-
-                        <a href="#produtos" class="button primary">
-                            Ver Produtos
-                        </a>
-
-                        <a href="#promocoes" class="button secondary">
-                            Ver Promoções
-                        </a>
-
-                    </div>
-
                 </div>
 
-                <div class="hero-visual">
 
-                    <div class="hero-glow"></div>
+                <div class="categories-grid">
 
-                    <div class="hero-placeholder">
-                        <span>ÁREA PARA<br>IMAGEM / ARTE</span>
-                    </div>
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="headsets"
+                    >
+                        <span class="category-icon">🎧</span>
+
+                        <span class="category-name">
+                            Fones
+                        </span>
+
+                        <span class="category-description">
+                            Headsets e áudio
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="teclados"
+                    >
+                        <span class="category-icon">⌨️</span>
+
+                        <span class="category-name">
+                            Teclados
+                        </span>
+
+                        <span class="category-description">
+                            Teclados mecânicos e gamer
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="mouses"
+                    >
+                        <span class="category-icon">🖱️</span>
+
+                        <span class="category-name">
+                            Mouses
+                        </span>
+
+                        <span class="category-description">
+                            Precisão para jogar e trabalhar
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="monitores"
+                    >
+                        <span class="category-icon">🖥️</span>
+
+                        <span class="category-name">
+                            Monitores
+                        </span>
+
+                        <span class="category-description">
+                            Imagem e desempenho
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="cadeiras"
+                    >
+                        <span class="category-icon">🪑</span>
+
+                        <span class="category-name">
+                            Cadeiras
+                        </span>
+
+                        <span class="category-description">
+                            Conforto para seu setup
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="streaming"
+                    >
+                        <span class="category-icon">🎙️</span>
+
+                        <span class="category-name">
+                            Streaming
+                        </span>
+
+                        <span class="category-description">
+                            Equipamentos para criação
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="hardware"
+                    >
+                        <span class="category-icon">⚙️</span>
+
+                        <span class="category-name">
+                            Hardware
+                        </span>
+
+                        <span class="category-description">
+                            Componentes e upgrades
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-card"
+                        data-category="consoles"
+                    >
+                        <span class="category-icon">🎮</span>
+
+                        <span class="category-name">
+                            Consoles
+                        </span>
+
+                        <span class="category-description">
+                            Games e acessórios
+                        </span>
+                    </button>
 
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- =========================================
-             CATEGORIAS
-        ========================================== -->
-        <section class="categories" id="categorias">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>CATEGORIAS</span>
-                    <h2>Encontre seu próximo upgrade</h2>
-                </div>
-
-                <div class="category-grid">
-
-                    <a href="#produtos" class="category-card">
-                        <span>🎧</span>
-                        <h3>Headsets</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>⌨️</span>
-                        <h3>Teclados</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>🖱️</span>
-                        <h3>Mouses</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>🖥️</span>
-                        <h3>Monitores</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>💺</span>
-                        <h3>Cadeiras</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>🎙️</span>
-                        <h3>Streaming</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>⚙️</span>
-                        <h3>Hardware</h3>
-                    </a>
-
-                    <a href="#produtos" class="category-card">
-                        <span>🎮</span>
-                        <h3>Consoles</h3>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================
+        <!-- =========================
              PRODUTOS
-        ========================================== -->
-        <section class="products-section" id="produtos">
-
+        ========================== -->
+        <section
+            id="produtos"
+            class="products-section section"
+        >
             <div class="container">
 
                 <div class="section-heading">
 
-                    <span>DESTAQUES</span>
+                    <span class="section-label">
+                        SELEÇÃO PXT
+                    </span>
 
-                    <h2>Produtos em destaque</h2>
+                    <h2>
+                        Produtos em destaque.
+                    </h2>
 
                     <p>
-                        Alguns dos produtos selecionados para a Pixel Store.
+                        Uma seleção de produtos para você descobrir.
                     </p>
 
                 </div>
+
 
                 <!--
-                    Os cards serão inseridos automaticamente
-                    pelo JavaScript.
+                    O JavaScript vai preencher esta área.
+
+                    Fluxo planejado:
+
+                    QR Code
+                       ↓
+                    ?ref=fone01
+                       ↓
+                    main.js
+                       ↓
+                    identifica a origem
+                       ↓
+                    categoria relacionada
+                       ↓
+                    produtos priorizados
                 -->
+
                 <div
-                    class="product-grid"
-                    id="product-grid">
+                    id="product-grid"
+                    class="products-grid"
+                >
+                    <!-- Produtos carregados pelo JavaScript -->
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- =========================================
-             PROMOÇÕES
-        ========================================== -->
-        <section class="promotion-section" id="promocoes">
-
+        <!-- =========================
+             OFERTAS
+        ========================== -->
+        <section
+            id="ofertas"
+            class="offers-section section"
+        >
             <div class="container">
 
-                <div class="promotion-box">
+                <div class="offer-box">
 
-                    <div>
-                        <span>OFERTAS</span>
+                    <span class="section-label">
+                        OPORTUNIDADES
+                    </span>
 
-                        <h2>
-                            Encontre seu próximo equipamento
-                            por menos.
-                        </h2>
+                    <h2>
+                        Talvez o próximo produto
+                        que você procura esteja aqui.
+                    </h2>
 
-                        <p>
-                            Confira produtos selecionados e oportunidades
-                            especiais.
-                        </p>
-                    </div>
+                    <p>
+                        Explore nossa seleção e descubra
+                        produtos que podem fazer sentido para você.
+                    </p>
 
-                    <a href="#produtos" class="button primary">
-                        Ver Ofertas
+                    <a
+                        href="#produtos"
+                        class="button button-primary"
+                    >
+                        Ver produtos
                     </a>
 
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- =========================================
+        <!-- =========================
              BENEFÍCIOS
-        ========================================== -->
-        <section class="benefits">
+        ========================== -->
+        <section class="benefits-section section">
 
             <div class="container">
 
                 <div class="section-heading">
-                    <span>POR QUE PXT?</span>
-                    <h2>Uma experiência simples</h2>
+
+                    <span class="section-label">
+                        PXT
+                    </span>
+
+                    <h2>
+                        Uma plataforma. Várias possibilidades.
+                    </h2>
+
                 </div>
+
 
                 <div class="benefits-grid">
 
-                    <div class="benefit-card">
-                        <span>✓</span>
-                        <h3>Produtos selecionados</h3>
-                        <p>
-                            Produtos escolhidos pensando em qualidade
-                            e custo-benefício.
-                        </p>
-                    </div>
+                    <article class="benefit-card">
 
-                    <div class="benefit-card">
-                        <span>✓</span>
-                        <h3>Links confiáveis</h3>
-                        <p>
-                            Você será direcionado para a página oficial
-                            de compra do produto.
-                        </p>
-                    </div>
+                        <span class="benefit-icon">
+                            ✦
+                        </span>
 
-                    <div class="benefit-card">
-                        <span>✓</span>
-                        <h3>Experiência simples</h3>
-                        <p>
-                            Encontre o produto e vá direto para a compra.
-                        </p>
-                    </div>
+                        <h3>
+                            Curadoria
+                        </h3>
 
-                    <div class="benefit-card">
-                        <span>✓</span>
-                        <h3>Curadoria</h3>
                         <p>
-                            Tecnologia reunida em um único lugar.
+                            Produtos organizados para facilitar
+                            sua descoberta.
                         </p>
-                    </div>
+
+                    </article>
+
+
+                    <article class="benefit-card">
+
+                        <span class="benefit-icon">
+                            ◈
+                        </span>
+
+                        <h3>
+                            Fácil de encontrar
+                        </h3>
+
+                        <p>
+                            Categorias e caminhos simples
+                            para chegar ao que interessa.
+                        </p>
+
+                    </article>
+
+
+                    <article class="benefit-card">
+
+                        <span class="benefit-icon">
+                            ↗
+                        </span>
+
+                        <h3>
+                            Links de compra
+                        </h3>
+
+                        <p>
+                            Acesse diretamente as páginas
+                            dos produtos selecionados.
+                        </p>
+
+                    </article>
+
+
+                    <article class="benefit-card">
+
+                        <span class="benefit-icon">
+                            ∞
+                        </span>
+
+                        <h3>
+                            Uma só plataforma
+                        </h3>
+
+                        <p>
+                            Diferentes categorias e origens,
+                            reunidas em um único lugar.
+                        </p>
+
+                    </article>
 
                 </div>
 
@@ -287,71 +473,102 @@
         </section>
 
 
-        <!-- =========================================
+        <!-- =========================
              SOBRE
-        ========================================== -->
-        <section class="about" id="sobre">
+        ========================== -->
+        <section
+            id="sobre"
+            class="about-section section"
+        >
+            <div class="container">
 
-            <div class="container about-content">
+                <div class="about-content">
 
-                <div>
-                    <span>SOBRE A MARCA</span>
+                    <span class="section-label">
+                        PIXEL STORY
+                    </span>
 
                     <h2>
-                        Tecnologia que conecta
-                        você ao próximo nível.
+                        Tecnologia encontra oportunidade.
                     </h2>
+
+                    <p>
+                        A Pixel Story reúne produtos, tecnologia
+                        e oportunidades em uma experiência simples,
+                        visual e direta.
+                    </p>
+
+                    <p>
+                        Um único espaço pode receber diferentes
+                        caminhos de acesso, permitindo que cada
+                        visitante encontre aquilo que procura.
+                    </p>
+
                 </div>
 
-                <p>
-                    A Pixel Store nasceu com a proposta de conectar
-                    pessoas apaixonadas por tecnologia aos produtos
-                    que fazem parte do universo gamer e digital.
-                </p>
-
             </div>
-
         </section>
 
     </main>
 
 
-    <!-- =========================================
+    <!-- =========================
          FOOTER
-    ========================================== -->
+    ========================== -->
     <footer class="site-footer">
 
         <div class="container footer-content">
 
-            <div>
+            <div class="footer-brand">
 
-                <div class="brand-name footer-brand">
-                    <span>Pixel</span>
-                    <strong>Store</strong>
+                <div class="brand">
+                    <span class="brand-pixel">
+                        Pixel
+                    </span>
+
+                    <span class="brand-story">
+                        Story
+                    </span>
                 </div>
 
                 <p>
-                    Tecnologia. Games. Experiência digital.
+                    Tecnologia. Produtos. Oportunidades.
                 </p>
+
+                <span class="footer-signature">
+                    for PXT.COM.BR
+                </span>
 
             </div>
 
+
             <div class="footer-links">
 
-                <a href="#produtos">Produtos</a>
-                <a href="#promocoes">Promoções</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#">Privacidade</a>
-                <a href="#">Termos</a>
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#categorias">
+                    Categorias
+                </a>
+
+                <a href="#produtos">
+                    Produtos
+                </a>
+
+                <a href="#sobre">
+                    Sobre
+                </a>
 
             </div>
 
         </div>
 
+
         <div class="container footer-bottom">
 
             <p>
-                © 2026 Pixel Store. Todos os direitos reservados.
+                © 2026 Pixel Story. Todos os direitos reservados.
             </p>
 
         </div>
@@ -359,6 +576,9 @@
     </footer>
 
 
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
     <script src="js/main.js"></script>
 
 </body>
