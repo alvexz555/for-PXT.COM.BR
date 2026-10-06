@@ -1,0 +1,756 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07080d;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(7, 8, 13, 0.88);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-content {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-placeholder {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #147cff;
+    border-radius: 10px;
+
+    color: #147cff;
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.brand-name {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 18px;
+    line-height: 0.9;
+}
+
+.brand-name span {
+    color: #147cff;
+}
+
+.brand-name strong {
+    color: #ffffff;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-nav a {
+    color: #a8adbd;
+    font-size: 14px;
+
+    transition: color 0.25s ease;
+}
+
+.main-nav a:hover {
+    color: #ffffff;
+}
+
+.header-button {
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+        90deg,
+        #147cff,
+        #7b3cff
+    );
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 680px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    right: -250px;
+    top: -200px;
+
+    background: rgba(123, 60, 255, 0.16);
+
+    filter: blur(100px);
+    border-radius: 50%;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 60px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.hero-tag,
+.section-heading span,
+.about span,
+.promotion-box span {
+    color: #147cff;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin-top: 18px;
+
+    max-width: 650px;
+
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 0.98;
+}
+
+.hero h1 span {
+    color: #147cff;
+}
+
+.hero p {
+    margin-top: 24px;
+
+    max-width: 520px;
+
+    color: #a8adbd;
+    font-size: 18px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+
+    margin-top: 32px;
+}
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 22px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button.primary {
+    background: linear-gradient(
+        90deg,
+        #147cff,
+        #7b3cff
+    );
+
+    box-shadow:
+        0 0 30px rgba(20, 124, 255, 0.18);
+}
+
+.button.secondary {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #ffffff;
+}
+
+.hero-visual {
+    min-height: 430px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-glow {
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        rgba(20, 124, 255, 0.35),
+        rgba(123, 60, 255, 0.35)
+    );
+
+    filter: blur(55px);
+}
+
+.hero-placeholder {
+    width: 82%;
+    aspect-ratio: 1;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(20, 124, 255, 0.3);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 124, 255, 0.08),
+            rgba(123, 60, 255, 0.08)
+        );
+
+    color: #777d91;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   SEÇÕES
+========================================= */
+
+.categories,
+.products-section,
+.benefits,
+.about,
+.promotion-section {
+    padding: 100px 0;
+}
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading h2,
+.about h2 {
+    margin-top: 10px;
+
+    font-size: clamp(30px, 4vw, 46px);
+
+    line-height: 1.1;
+}
+
+.section-heading p {
+    margin-top: 12px;
+
+    color: #8f95a8;
+}
+
+
+/* =========================================
+   CATEGORIAS
+========================================= */
+
+.category-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+.category-card {
+    padding: 26px;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 14px;
+
+    background: #0c0e15;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(20, 124, 255, 0.5);
+}
+
+.category-card span {
+    font-size: 28px;
+}
+
+.category-card h3 {
+    margin-top: 14px;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   PRODUTOS
+========================================= */
+
+.products-section {
+    background: #090b11;
+}
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.product-card {
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 14px;
+
+    background: #0d1018;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(20, 124, 255, 0.45);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #151022
+        );
+
+    color: #62697a;
+
+    font-size: 13px;
+}
+
+.product-info {
+    padding: 18px;
+}
+
+.product-category {
+    color: #147cff;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.product-name {
+    margin-top: 7px;
+
+    min-height: 48px;
+
+    font-size: 16px;
+}
+
+.product-price {
+    margin-top: 14px;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product-button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 11px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: #151925;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.product-button:hover {
+    background: #147cff;
+}
+
+
+/* =========================================
+   PROMOÇÃO
+========================================= */
+
+.promotion-box {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 50px;
+
+    border: 1px solid rgba(20, 124, 255, 0.18);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(20, 124, 255, 0.08),
+            rgba(123, 60, 255, 0.08)
+        );
+}
+
+.promotion-box h2 {
+    max-width: 650px;
+
+    margin-top: 10px;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+}
+
+.promotion-box p {
+    margin-top: 12px;
+
+    color: #949bad;
+}
+
+
+/* =========================================
+   BENEFÍCIOS
+========================================= */
+
+.benefits-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.benefit-card {
+    padding: 25px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 14px;
+
+    background: #0c0e14;
+}
+
+.benefit-card > span {
+    display: inline-flex;
+
+    width: 32px;
+    height: 32px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(20, 124, 255, 0.12);
+
+    color: #147cff;
+
+    font-weight: bold;
+}
+
+.benefit-card h3 {
+    margin-top: 18px;
+}
+
+.benefit-card p {
+    margin-top: 8px;
+
+    color: #858b9c;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SOBRE
+========================================= */
+
+.about {
+    background: #090b11;
+}
+
+.about-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.about-content > p {
+    color: #969cad;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    padding-top: 60px;
+
+    background: #05060a;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-content {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 40px;
+}
+
+.footer-brand {
+    font-size: 22px;
+}
+
+.footer-content p {
+    margin-top: 10px;
+
+    color: #72788a;
+
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    align-items: center;
+}
+
+.footer-links a {
+    color: #858b9c;
+
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+
+    padding: 20px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+    color: #5f6472;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 950px) {
+
+    .main-nav {
+        display: none;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 80px 0;
+    }
+
+    .hero-visual {
+        min-height: 350px;
+    }
+
+    .category-grid,
+    .product-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .header-button {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .category-grid,
+    .product-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promotion-box {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+}
