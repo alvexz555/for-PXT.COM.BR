@@ -14,7 +14,7 @@ const products = [
     name: "Basike Clip-Ear Bluetooth TWS Preto",
     description:
       "Fone sem fio com design Clip-Ear, indicado para academia e treinos. Confira os detalhes na oferta.",
-    image: "",
+    image: "./images/D_NQ_NP_2X_696122-MLA113393336263_062026-F.webp",
     imageAlt: "Fone Basike Clip-Ear Bluetooth preto",
     affiliateUrl: "https://meli.la/1bZMGPx"
   },
