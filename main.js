@@ -1,178 +1,280 @@
-const PXT_CONFIG = {
-  refParameter: "ref",
-  storageKey: "pxt_ref"
-};
+import { getProducts } from "./catalog/products/index.js";
+import { createProductCard } from "./components/product-card.js";
+import {
+  initTracking,
+  captureReferral
+} from "./services/tracking.js";
 
-/*
- * PXT V1
- * Catálogo exclusivo de fones.
- * Os links de afiliado e imagens ficam centralizados aqui
- * para serem atualizados sem mexer na estrutura da página.
- */
-const products = [
-  {
-    id: "fone-01",
-    name: "Fone Bluetooth TWS 3 compatível AirPods, branco",
-    use: ["musica", "rotina"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-02",
-    name: "Lenovo LE208 Bluetooth sem fio",
-    use: ["musica", "rotina", "estudos"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-03",
-    name: "Fone sem fio em destaque",
-    use: ["musica", "rotina"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-04",
-    name: "Fone Bluetooth para o dia a dia",
-    use: ["rotina", "estudos"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-05",
-    name: "Fone para música e entretenimento",
-    use: ["musica"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-06",
-    name: "Fone para jogos e imersão",
-    use: ["jogos"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-07",
-    name: "Fone para estudos e concentração",
-    use: ["estudos"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-08",
-    name: "Fone sem fio para rotina",
-    use: ["rotina"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-09",
-    name: "Fone Bluetooth compacto",
-    use: ["musica", "rotina"],
-    image: "",
-    affiliateUrl: ""
-  },
-  {
-    id: "fone-10",
-    name: "Fone para uma experiência de áudio completa",
-    use: ["musica", "jogos"],
-    image: "",
-    affiliateUrl: ""
+function renderCatalog() {
+  const grid = document.querySelector("#products-grid");
+  const count = document.querySelector("#catalog-count");
+
+  if (!grid) return;
+
+  const products = getProducts();
+
+  grid.replaceChildren();
+
+  if (products.length === 0) {
+    const empty = document.createElement("p");
+
+    empty.className = "empty-catalog";
+    empty.textContent =
+      "Estamos preparando nossa seleção de fones. Volte em breve.";
+
+    grid.appendChild(empty);
+  } else {
+    for (const product of products) {
+      grid.appendChild(createProductCard(product));
+    }
   }
-];
 
-function captureRef() {
-  try {
-    const ref = new URLSearchParams(window.location.search).get(PXT_CONFIG.refParameter);
-    if (ref) localStorage.setItem(PXT_CONFIG.storageKey, ref);
-  } catch (error) {
-    console.warn("[PXT] Não foi possível salvar a origem.", error);
+  if (count) {
+    count.textContent =
+      `${products.length} ${products.length === 1 ? "fone" : "fones"}`;
   }
 }
 
-function getRef() {
+function initPXT() {
+  captureReferral();
+  renderCatalog();
+  initTracking();
+
+  console.info("[PXT] Catálogo iniciado.");
+}
+import { getProducts } from "./catalog/products/index.js";
+import { createProductCard } from "./components/product-card.js";
+import {
+  initTracking,
+  captureReferral
+} from "./services/tracking.js";
+
+function renderCatalog() {
+  const grid = document.querySelector("#products-grid");
+  const count = document.querySelector("#catalog-count");
+
+  if (!grid) return;
+
+  const products = getProducts();
+
+  grid.replaceChildren();
+
+  if (products.length === 0) {
+    const empty = document.createElement("p");
+
+    empty.className = "empty-catalog";
+    empty.textContent =
+      "Estamos preparando nossa seleção de fones. Volte em breve.";
+
+    grid.appendChild(empty);
+  } else {
+    for (const product of products) {
+      grid.appendChild(createProductCard(product));
+    }
+  }
+
+  if (count) {
+    count.textContent =
+      `${products.length} ${products.length === 1 ? "fone" : "fones"}`;
+  }
+}
+
+function initPXT() {
+  captureReferral();
+  renderCatalog();
+  initTracking();
+
+  console.info("[PXT] Catálogo iniciado.");
+}
+
+document.addEventListener("DOMContentLoaded", initPXT);
+function makePlaceholder(labelText) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "placeholder-content";
+
+  const icon = document.createElement("span");
+  icon.className = "placeholder-icon";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = "🎧";
+
+  const label = document.createElement("span");
+  label.textContent = labelText;
+
+  wrapper.append(icon, label);
+
+  return wrapper;
+}
+
+function makeImageArea(product) {
+  const area = document.createElement("div");
+  area.className = "product-image-area";
+
+  if (!product.image) {
+    area.classList.add("image-placeholder");
+    area.appendChild(makePlaceholder("Imagem em preparação"));
+    return area;
+  }
+
+  const image = document.createElement("img");
+
+  image.src = product.image;
+  image.alt = product.imageAlt || product.name;
+  image.loading = "lazy";
+  image.decoding = "async";
+
+  image.addEventListener("error", () => {
+    area.replaceChildren();
+    area.classList.add("image-placeholder");
+    area.appendChild(makePlaceholder("Imagem indisponível"));
+  }, { once: true });
+
+  area.appendChild(image);
+
+  return area;
+}
+
+function makeAction(product) {
+  const action = document.createElement("a");
+
+  action.className = "product-action";
+  action.dataset.productId = product.id;
+
+  if (product.affiliateUrl) {
+    action.href = product.affiliateUrl;
+    action.target = "_blank";
+    action.rel = "noopener noreferrer sponsored";
+    action.classList.add("is-active", "affiliate-link");
+
+    action.textContent = "Ver oferta no Mercado Livre ↗";
+
+    action.setAttribute(
+      "aria-label",
+      `Ver oferta de ${product.name} no Mercado Livre`
+    );
+  } else {
+    action.href = "#catalogo";
+    action.classList.add("is-disabled");
+    action.setAttribute("aria-disabled", "true");
+    action.tabIndex = -1;
+
+    action.textContent = "Oferta em preparação";
+  }
+
+  return action;
+}
+
+export function createProductCard(product) {
+  const card = document.createElement("article");
+
+  card.className = "product-card";
+  card.dataset.productId = product.id;
+
+  const content = document.createElement("div");
+  content.className = "product-card-content";
+
+  const tag = document.createElement("span");
+  tag.className = "product-tag";
+  tag.textContent = "PXT FONES";
+
+  const title = document.createElement("h3");
+  title.textContent = product.name;
+
+  const description = document.createElement("p");
+  description.textContent =
+    product.description ||
+    "Confira os detalhes atualizados na página da oferta.";
+
+  content.append(
+    tag,
+    title,
+    description,
+    makeAction(product)
+  );
+
+  card.append(
+    makeImageArea(product),
+    content
+  );
+
+  return card;
+}
+const REF_PARAMETER = "ref";
+const STORAGE_KEY = "pxt_ref";
+
+export function captureReferral() {
   try {
-    return localStorage.getItem(PXT_CONFIG.storageKey) || "direto";
+    const url = new URL(window.location.href);
+    const ref = url.searchParams.get(REF_PARAMETER);
+
+    if (ref && /^[a-zA-Z0-9_-]{1,60}$/.test(ref)) {
+      window.localStorage.setItem(STORAGE_KEY, ref);
+    }
+  } catch (error) {
+    console.warn(
+      "[PXT] Não foi possível salvar a origem do acesso.",
+      error
+    );
+  }
+}
+
+function getReferral() {
+  try {
+    return window.localStorage.getItem(STORAGE_KEY) || "direto";
   } catch {
     return "direto";
   }
 }
 
-function createProductCard(product) {
-  const article = document.createElement("article");
-  article.className = "product-card";
-
-  const link = document.createElement("a");
-  link.className = "product-image-link affiliate-link";
-  link.href = product.affiliateUrl || "#";
-  link.target = product.affiliateUrl ? "_blank" : "_self";
-  link.rel = "noopener noreferrer";
-  link.dataset.productId = product.id;
-  link.setAttribute("aria-label", `Ver ${product.name}`);
-
-  if (product.image) {
-    const img = document.createElement("img");
-    img.src = product.image;
-    img.alt = product.name;
-    img.loading = "lazy";
-    link.appendChild(img);
-  } else {
-    link.innerHTML = `<span class="placeholder-icon">🎧</span><span>Imagem do fone</span>`;
-  }
-
-  const info = document.createElement("div");
-  info.className = "product-info";
-  info.innerHTML = `
-    <span class="product-tag">FONE</span>
-    <h3>${product.name}</h3>
-    <span class="product-action">Ver produto ↗</span>
-  `;
-
-  article.append(link, info);
-  return article;
-}
-
-function renderProducts(list = products) {
-  const grid = document.getElementById("product-grid");
-  const count = document.getElementById("product-count");
-  if (!grid) return;
-
-  grid.innerHTML = "";
-  list.forEach(product => grid.appendChild(createProductCard(product)));
-  if (count) count.textContent = `${list.length} ${list.length === 1 ? "fone" : "fones"}`;
-}
-
-function setupUseFilters() {
-  document.querySelectorAll(".use-card").forEach(card => {
-    card.addEventListener("click", event => {
-      event.preventDefault();
-      const use = card.dataset.use;
-      const filtered = products.filter(product => product.use.includes(use));
-      renderProducts(filtered);
-      document.getElementById("fones")?.scrollIntoView({ behavior: "smooth" });
-    });
-  });
-}
-
-function setupTracking() {
+export function initTracking() {
   document.addEventListener("click", event => {
-    const link = event.target.closest(".affiliate-link");
-    if (!link || !link.dataset.productId || !link.href || link.getAttribute("href") === "#") return;
-    console.log("[PXT] affiliate_click", {
-      ref: getRef(),
+    const link = event.target.closest("a.affiliate-link");
+
+    if (!link || !link.dataset.productId) return;
+
+    console.info("[PXT] affiliate_click", {
+      ref: getReferral(),
       productId: link.dataset.productId,
       timestamp: new Date().toISOString()
     });
   });
 }
+export default {
+  id: "fone-01",
 
-function initPXT() {
-  captureRef();
-  renderProducts();
-  setupUseFilters();
-  setupTracking();
-  console.log("[PXT] PXT Fones iniciado. Ref:", getRef());
+  name: "Fone Bluetooth TWS 3 compatível AirPods, branco",
+
+  description:
+    "Confira as características e os detalhes na página da oferta.",
+
+  image: "",
+
+  affiliateUrl: ""
+};
+export default {
+  id: "fone-02",
+
+  name: "Lenovo LE208 Bluetooth sem fio",
+
+  description:
+    "Confira as características e os detalhes na página da oferta.",
+
+  image: "",
+
+  affiliateUrl: ""
+};
+import fone01 from "./fone-01.js";
+import fone02 from "./fone-02.js";
+
+const products = [
+  fone01,
+  fone02
+];
+
+export function getProducts() {
+  return products.filter(product =>
+    product &&
+    product.id &&
+    product.name
+  );
 }
-
 document.addEventListener("DOMContentLoaded", initPXT);
