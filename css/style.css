@@ -1,50 +1,46 @@
-/* =========================================================
+/* ==================================================
    PXT FONES | PIXEL STORY
-   MODO DIAGNÓSTICO VISUAL
-   Fundo branco / texto preto / botões cinza
-   ========================================================= */
-
-
-/* =========================================================
-   CONFIGURAÇÕES
-   ========================================================= */
+   Visual, layout e responsividade
+   ================================================== */
 
 :root {
-  --container: 1180px;
+  --pxt-blue: #0185b7;
+  --pxt-blue-light: #65cfff;
 
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
+  --pxt-navy: #001433;
+  --pxt-deep: #002242;
+  --pxt-panel: #011837;
+  --pxt-panel-soft: #011d3c;
 
+  --pxt-text: #f4f8fc;
+  --pxt-muted: #b6c8d9;
+  --pxt-line: rgba(151, 190, 220, 0.2);
+
+  --container: 1160px;
+  --radius: 22px;
   --transition: 180ms ease;
 }
 
-
-/* =========================================================
-   RESET
-   ========================================================= */
+/* RESET */
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-
-  /* Fundo geral */
-  background: #ffffff;
+  scroll-padding-top: 86px;
+  background: var(--pxt-navy);
 }
 
 body {
+  min-width: 320px;
   min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
 
-  /* Fundo geral */
-  background: #ffffff;
-
-  /* Todo texto */
-  color: #000000;
+  background: var(--pxt-navy);
+  color: var(--pxt-text);
 
   font-family:
     Inter,
@@ -56,12 +52,12 @@ body {
     sans-serif;
 
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 a {
-  color: #000000;
+  color: inherit;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -69,549 +65,322 @@ img {
   max-width: 100%;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
 ::selection {
-  background: #d0d0d0;
-  color: #000000;
+  background: var(--pxt-blue);
+  color: #ffffff;
 }
 
-
-/* =========================================================
-   BASE
-   ========================================================= */
+/* BASE */
 
 .container {
   width: min(calc(100% - 40px), var(--container));
   margin-inline: auto;
 }
 
-.section {
-  padding: 110px 0;
-
-  /* Fundo das seções */
-  background: #ffffff;
-}
-
-.section-heading {
-  max-width: 760px;
-  margin-bottom: 48px;
-}
-
-
-/* =========================================================
-   TEXTOS GERAIS
-   ========================================================= */
-
-/* PIXEL STORY • PXT FONES */
-/* COMEÇE PELO SEU USO */
-/* SELEÇÃO PXT */
-/* PXT FONES */
-/* SOBRE O PXT */
-.section-label,
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-
-/* Títulos das seções */
-.section-heading h2 {
-  margin-top: 12px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.045em;
-}
-
-
-/* Descrições das seções */
-.section-heading p {
-  max-width: 650px;
-  margin-top: 18px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 1rem;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* CABEÇALHO */
 
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 20;
 
-  border-bottom: 1px solid #cccccc;
-
-  /* Fundo */
-  background: #ffffff;
+  border-bottom: 1px solid var(--pxt-line);
+  background: rgba(0, 20, 51, 0.92);
+  backdrop-filter: blur(16px);
 }
 
 .header-inner {
-  min-height: 76px;
+  min-height: 74px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: 20px;
 }
 
-
-/* PXT Fones */
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
 
-  /* Texto */
-  color: #000000;
-
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  color: var(--pxt-text);
+  font-size: 1.04rem;
+  font-weight: 850;
+  letter-spacing: -0.035em;
   white-space: nowrap;
 }
 
-
-/* PXT */
-.brand-pixel {
-  /* Texto */
-  color: #000000;
-
+.brand-mark {
+  color: var(--pxt-blue-light);
   font-weight: 950;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.09em;
 }
 
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-
-/* Início / Fones / Escolha */
-.main-nav a {
-  position: relative;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 0.88rem;
-  font-weight: 650;
-
-  transition:
-    color var(--transition),
-    transform var(--transition);
-}
-
-
-/* Linha de Início / Fones / Escolha */
-.main-nav a::after {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -8px;
-
-  height: 1px;
-
-  /* Linha */
-  background: #000000;
-
-  transform: scaleX(0);
-  transform-origin: center;
-
-  transition: transform var(--transition);
-}
-
-
-/* Início / Fones / Escolha */
-.main-nav a:hover {
-  color: #000000;
-  transform: translateY(-1px);
-}
-
-.main-nav a:hover::after {
-  transform: scaleX(1);
-}
-
-
-/* Encontrar meu fone */
-.header-button {
+.header-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 
   min-height: 42px;
-  padding: 0 18px;
+  padding: 0 17px;
 
-  border: 1px solid #999999;
+  border: 1px solid rgba(1, 133, 183, 0.65);
   border-radius: 999px;
 
-  /* Botão */
-  background: #d0d0d0;
-
-  /* Texto */
-  color: #000000;
+  background: rgba(1, 133, 183, 0.12);
+  color: var(--pxt-text);
 
   font-size: 0.82rem;
-  font-weight: 750;
+  font-weight: 800;
 
   transition:
     background var(--transition),
-    color var(--transition),
-    border-color var(--transition),
     transform var(--transition);
 }
 
-
-/* Encontrar meu fone - interação */
-.header-button:hover {
-  background: #aaaaaa;
-  border-color: #888888;
-  color: #000000;
-
-  transform: translateY(-2px);
+.header-link:hover {
+  background: rgba(1, 133, 183, 0.25);
+  transform: translateY(-1px);
 }
 
-
-/* =========================================================
-   HERO
-   ========================================================= */
+/* APRESENTAÇÃO */
 
 .hero {
   position: relative;
-
-  min-height: 720px;
+  isolation: isolate;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
 
-  /* Fundo */
-  background: #ffffff;
+  min-height: 500px;
 
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid var(--pxt-line);
+
+  background:
+    radial-gradient(
+      ellipse at 78% 38%,
+      rgba(1, 133, 183, 0.2),
+      transparent 35%
+    ),
+    linear-gradient(
+      125deg,
+      var(--pxt-navy),
+      var(--pxt-deep) 62%,
+      var(--pxt-panel)
+    );
 }
 
-
-/* Removemos as camadas decorativas do Hero */
-.hero::before {
-  display: none;
-}
-
-
-/* Removemos o brilho do Hero */
-.hero-glow {
-  display: none;
-}
-
-
-/* Conteúdo do Hero */
 .hero-content {
   position: relative;
-  z-index: 1;
-
-  padding: 100px 0;
+  z-index: 2;
+  padding-block: 84px;
 }
 
+.eyebrow,
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 
-/* PIXEL STORY • PXT FONES */
-.hero .eyebrow {
-  /* Texto */
-  color: #000000;
+  margin: 0;
+
+  color: #80d9ff;
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
 
-/* O fone certo muda
-   o jeito de ouvir. */
+  background: var(--pxt-blue);
+  box-shadow: 0 0 14px rgba(1, 133, 183, 0.9);
+}
+
 .hero h1 {
-  max-width: 850px;
-  margin-top: 20px;
+  max-width: 800px;
+  margin: 22px 0 0;
 
-  /* Texto */
-  color: #000000;
-
-  font-size: clamp(3.5rem, 8vw, 7.5rem);
-  line-height: 0.9;
+  color: #ffffff;
+  font-size: clamp(3.35rem, 8vw, 6.4rem);
+  font-weight: 950;
+  line-height: 0.94;
   letter-spacing: -0.075em;
-  font-weight: 900;
 }
 
-
-/* o jeito de ouvir. */
 .hero h1 span {
-  /* Texto */
-  color: #000000;
+  color: var(--pxt-blue-light);
 }
 
+.hero-description {
+  max-width: 540px;
+  margin: 23px 0 0;
 
-/* Uma seleção direta de fones... */
-.hero-content > p {
-  max-width: 620px;
-  margin-top: 30px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: clamp(1rem, 1.7vw, 1.15rem);
-  line-height: 1.75;
+  color: var(--pxt-muted);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
 }
-
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-
-  margin-top: 34px;
-}
-
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 14px;
 
   min-height: 52px;
-  padding: 0 23px;
+  padding: 0 22px;
 
+  border: 1px solid transparent;
   border-radius: 999px;
 
-  font-size: 0.88rem;
-  font-weight: 800;
+  font-size: 0.87rem;
+  font-weight: 850;
 
   transition:
     transform var(--transition),
     background var(--transition),
-    color var(--transition),
-    border-color var(--transition);
+    box-shadow var(--transition);
 }
 
 .button:hover {
   transform: translateY(-2px);
 }
 
-
-/* Ver fones */
 .button-primary {
-  /* Botão */
-  background: #d0d0d0;
+  margin-top: 27px;
 
-  /* Texto */
-  color: #000000;
+  background: var(--pxt-blue);
+  color: #ffffff;
 
-  border: 1px solid #999999;
+  box-shadow: 0 8px 28px rgba(1, 133, 183, 0.2);
 }
 
-
-/* Ver fones - interação */
 .button-primary:hover {
-  background: #aaaaaa;
-  border-color: #888888;
-  color: #000000;
+  background: #0798ce;
+  box-shadow: 0 12px 34px rgba(1, 133, 183, 0.28);
 }
 
+.hero-note {
+  margin: 13px 0 0;
 
-/* Qual combina comigo? */
-.button-secondary {
-  /* Botão */
-  background: #d0d0d0;
-
-  /* Texto */
-  color: #000000;
-
-  border: 1px solid #999999;
+  color: #9bb2c8;
+  font-size: 0.76rem;
 }
 
+/* DECORAÇÃO DO HERO */
 
-/* Qual combina comigo? - interação */
-.button-secondary:hover {
-  background: #aaaaaa;
-  border-color: #888888;
-  color: #000000;
-}
-
-
-/* 🎧 Foco em áudio / ↗ Links diretos / ◈ Seleção simples */
-.hero-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 22px;
-
-  margin-top: 40px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 0.78rem;
-  font-weight: 650;
-}
-
-
-/* =========================================================
-   ESCOLHA
-   ========================================================= */
-
-.choice-section {
-  /* Fundo */
-  background: #ffffff;
-
-  border-bottom: 1px solid #cccccc;
-}
-
-
-.use-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-
-  border-top: 1px solid #cccccc;
-  border-left: 1px solid #cccccc;
-}
-
-
-/* Música / Jogos / Estudos / Rotina */
-.use-card {
-  min-height: 190px;
-  padding: 28px;
-
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  border-right: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
-
-  /* Fundo */
-  background: #ffffff;
-
-  transition:
-    background var(--transition),
-    color var(--transition);
-}
-
-
-/* Ícone de Música / Jogos / Estudos / Rotina */
-.use-card > span {
+.hero-decoration {
   position: absolute;
-  top: 26px;
-  left: 28px;
+  z-index: 1;
 
-  /* Ícone */
-  color: #000000;
+  border: 1px solid rgba(101, 207, 255, 0.18);
+  border-radius: 50%;
 
-  font-size: 1.7rem;
-
-  transition: color var(--transition);
+  pointer-events: none;
 }
 
+.hero-decoration-one {
+  width: 410px;
+  height: 410px;
 
-/* Música / Jogos / Estudos / Rotina */
-.use-card strong {
-  position: relative;
+  top: 38px;
+  right: 8%;
 
-  /* Texto */
-  color: #000000;
-
-  font-size: 1.2rem;
-  letter-spacing: -0.025em;
+  box-shadow:
+    inset 0 0 70px rgba(1, 133, 183, 0.08),
+    0 0 80px rgba(1, 133, 183, 0.07);
 }
 
+.hero-decoration-two {
+  width: 270px;
+  height: 270px;
 
-/* Descrição dos cards */
-.use-card small {
-  position: relative;
+  top: 108px;
+  right: calc(8% + 70px);
 
-  margin-top: 7px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 0.8rem;
+  border-color: rgba(101, 207, 255, 0.12);
 }
 
+.hero-watermark {
+  position: absolute;
+  z-index: 1;
 
-/* Card em interação */
-.use-card:hover {
-  background: #eeeeee;
+  right: max(5%, calc((100vw - var(--container)) / 2));
+  bottom: 30px;
+
+  color: rgba(255, 255, 255, 0.07);
+  font-size: clamp(2.8rem, 6vw, 5.6rem);
+  font-weight: 950;
+  letter-spacing: -0.09em;
+
+  pointer-events: none;
 }
 
-
-/* Ícone em interação */
-.use-card:hover > span {
-  color: #000000;
+.hero-watermark span {
+  color: rgba(101, 207, 255, 0.17);
+  font-size: 0.28em;
+  letter-spacing: 0.14em;
 }
 
+/* CATÁLOGO */
 
-/* Remover decoração antiga */
-.use-card::before {
-  display: none;
+.catalog-section {
+  padding: 78px 0 88px;
+
+  background:
+    radial-gradient(
+      ellipse at 5% 0%,
+      rgba(1, 133, 183, 0.07),
+      transparent 30%
+    ),
+    var(--pxt-navy);
 }
 
-
-/* =========================================================
-   PRODUTOS
-   ========================================================= */
-
-.products-section {
-  /* Fundo */
-  background: #ffffff;
-}
-
-
-.products-heading {
-  max-width: none;
-
+.section-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 30px;
+  gap: 26px;
+
+  margin-bottom: 30px;
 }
 
+.section-heading h2 {
+  margin: 11px 0 0;
 
-/* 0 fones */
-.product-count {
+  color: #ffffff;
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
+  line-height: 1.03;
+  letter-spacing: -0.055em;
+}
+
+.section-description {
+  max-width: 660px;
+  margin: 14px 0 0;
+
+  color: var(--pxt-muted);
+  font-size: 0.96rem;
+}
+
+.catalog-count {
   flex-shrink: 0;
 
+  margin-bottom: 3px;
   padding: 8px 13px;
 
-  border: 1px solid #999999;
+  border: 1px solid var(--pxt-line);
   border-radius: 999px;
 
-  /* Fundo */
-  background: #d0d0d0;
-
-  /* Texto */
-  color: #000000;
+  background: rgba(255, 255, 255, 0.035);
+  color: #c5d8e9;
 
   font-size: 0.75rem;
   font-weight: 750;
 }
-
 
 .products-grid {
   display: grid;
@@ -619,433 +388,374 @@ a {
   gap: 18px;
 }
 
+/* CARD DO PRODUTO */
 
-/* Card do produto */
 .product-card {
-  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
   overflow: hidden;
 
-  display: flex;
-  flex-direction: column;
+  border: 1px solid var(--pxt-line);
+  border-radius: var(--radius);
 
-  min-height: 440px;
-
-  border: 1px solid #999999;
-  border-radius: var(--radius-lg);
-
-  /* Fundo */
-  background: #ffffff;
+  background: linear-gradient(
+    155deg,
+    rgba(1, 34, 66, 0.95),
+    rgba(1, 24, 55, 0.98)
+  );
 
   transition:
-    transform 220ms ease,
-    border-color 220ms ease;
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
-
-/* Card do produto - interação */
 .product-card:hover {
-  transform: translateY(-5px);
-
-  border-color: #666666;
+  transform: translateY(-4px);
+  border-color: rgba(1, 133, 183, 0.65);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
 }
 
+.product-image-area {
+  position: relative;
 
-/* Imagem do produto */
-.product-card img {
+  display: grid;
+  min-height: 235px;
+  place-items: center;
+  overflow: hidden;
+
+  padding: 22px;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(1, 133, 183, 0.14),
+      transparent 58%
+    ),
+    rgba(0, 12, 32, 0.38);
+}
+
+.product-image-area img {
   width: 100%;
-  height: 260px;
+  height: 210px;
 
   object-fit: contain;
-
-  padding: 28px;
-
-  /* Fundo da imagem */
-  background: #ffffff;
 }
 
+.image-placeholder {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
 
-/* Conteúdo do produto */
+  color: #8ba4bb;
+  font-size: 0.75rem;
+}
+
+.placeholder-content {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.placeholder-icon {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  place-items: center;
+
+  border: 1px solid rgba(101, 207, 255, 0.22);
+  border-radius: 21px;
+
+  background: rgba(1, 133, 183, 0.09);
+  font-size: 2rem;
+}
+
 .product-card-content {
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: flex-start;
 
-  padding: 24px;
+  padding: 21px;
 
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid var(--pxt-line);
 }
 
+.product-tag {
+  color: #68cfff;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
 
-/* Nome do produto */
 .product-card h3 {
-  /* Texto */
-  color: #000000;
+  margin: 9px 0 0;
 
-  font-size: 1.2rem;
-  line-height: 1.2;
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.3;
   letter-spacing: -0.025em;
 }
 
-
-/* Descrição do produto */
 .product-card p {
-  margin-top: 9px;
+  margin: 10px 0 0;
 
-  /* Texto */
-  color: #000000;
-
-  font-size: 0.85rem;
+  color: var(--pxt-muted);
+  font-size: 0.83rem;
   line-height: 1.6;
 }
 
+.product-action {
+  display: flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
 
-.product-card .button,
-.product-card a {
-  margin-top: auto;
+  margin-top: 21px;
+  padding: 10px 13px;
+
+  border: 1px solid var(--pxt-line);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: #b4c9da;
+
+  text-align: center;
+  font-size: 0.77rem;
+  font-weight: 850;
 }
 
+.product-action.is-active {
+  border-color: transparent;
+  background: var(--pxt-blue);
+  color: #ffffff;
 
-/* =========================================================
-   MARKETING
-   ========================================================= */
-
-.marketing-section {
-  padding-top: 100px;
-  padding-bottom: 110px;
-
-  /* Fundo */
-  background: #ffffff;
-
-  border-top: 1px solid #cccccc;
+  transition:
+    background var(--transition),
+    transform var(--transition);
 }
 
-
-/* Faixa editorial */
-.marketing-box {
-  position: relative;
-
-  padding: clamp(40px, 7vw, 85px);
-
-  border-top: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
-
-  /* Fundo */
-  background: #ffffff;
+.product-action.is-active:hover {
+  background: #0798ce;
+  transform: translateY(-1px);
 }
 
-
-/* Remover PXT decorativo durante o diagnóstico */
-.marketing-box::after {
-  display: none;
+.product-action.is-disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
+.catalog-note {
+  margin: 23px 0 0;
 
-/* Menos procura.
-   Mais decisão. */
-.marketing-box h2 {
-  position: relative;
-  z-index: 1;
-
-  margin-top: 14px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.065em;
+  color: #8fa7bd;
+  font-size: 0.75rem;
+  line-height: 1.7;
 }
 
+.empty-catalog {
+  grid-column: 1 / -1;
 
-/* Mais decisão. */
-.marketing-box h2 span {
-  /* Texto */
-  color: #000000;
+  padding: 32px;
+
+  border: 1px dashed var(--pxt-line);
+  border-radius: var(--radius);
+
+  color: var(--pxt-muted);
+  text-align: center;
 }
 
-
-/* O PXT existe para encurtar o caminho... */
-.marketing-box p {
-  position: relative;
-  z-index: 1;
-
-  max-width: 600px;
-  margin-top: 25px;
-
-  /* Texto */
-  color: #000000;
-}
-
-
-/* Explorar seleção */
-.marketing-box .button {
-  position: relative;
-  z-index: 2;
-
-  margin-top: 30px;
-}
-
-
-/* =========================================================
-   SOBRE
-   ========================================================= */
-
-.about-section {
-  /* Fundo */
-  background: #ffffff;
-
-  border-top: 1px solid #cccccc;
-}
-
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-
-/* Um catálogo pequeno por escolha. */
-.about-grid h2 {
-  max-width: 500px;
-  margin-top: 12px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  line-height: 1;
-  letter-spacing: -0.05em;
-}
-
-
-/* Texto explicativo do PXT */
-.about-grid > p {
-  max-width: 620px;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 1rem;
-  line-height: 1.9;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* RODAPÉ */
 
 .site-footer {
-  /* Fundo */
-  background: #ffffff;
-
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid var(--pxt-line);
+  background: #000f27;
 }
 
-
-.footer-content {
-  min-height: 150px;
-
+.footer-main {
   display: flex;
+  min-height: 125px;
   align-items: center;
   justify-content: space-between;
-
-  gap: 30px;
+  gap: 24px;
 }
 
+.footer-tagline {
+  margin: 7px 0 0;
 
-/* Pixel Story • foco em fones. */
-.footer-content p {
-  margin-top: 8px;
-
-  /* Texto */
-  color: #000000;
-
+  color: #93a9be;
   font-size: 0.75rem;
 }
 
-
-/* Voltar ao topo ↑ */
-.footer-content > a {
-  /* Texto */
-  color: #000000;
-
+.back-to-top {
+  color: #c4d6e5;
   font-size: 0.8rem;
-  font-weight: 700;
-
-  transition: color var(--transition);
+  font-weight: 750;
 }
 
-
-/* Voltar ao topo ↑ - interação */
-.footer-content > a:hover {
-  color: #000000;
+.back-to-top:hover {
+  color: var(--pxt-blue-light);
 }
 
+.footer-legal {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
 
-/* © 2026 Pixel Story. Todos os direitos reservados. */
-.footer-bottom {
-  padding: 20px 0;
+  padding: 18px 0 22px;
+  border-top: 1px solid var(--pxt-line);
 
-  border-top: 1px solid #cccccc;
-
-  /* Texto */
-  color: #000000;
-
-  font-size: 0.7rem;
+  color: #8299b0;
+  font-size: 0.68rem;
 }
 
+.footer-legal p {
+  margin: 0;
+}
 
-/* =========================================================
-   ACESSIBILIDADE
-   ========================================================= */
+.footer-legal p:last-child {
+  max-width: 620px;
+  text-align: right;
+}
+
+/* ACESSIBILIDADE */
 
 :focus-visible {
-  outline: 2px solid #000000;
+  outline: 2px solid var(--pxt-blue-light);
   outline-offset: 4px;
 }
 
+/* TABLETS */
 
-/* =========================================================
-   RESPONSIVO
-   ========================================================= */
-
-@media (max-width: 980px) {
-
-  .use-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+@media (max-width: 900px) {
   .products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
+  .hero-decoration-one {
+    right: -100px;
+    opacity: 0.7;
+  }
+
+  .hero-decoration-two {
+    right: -20px;
+    opacity: 0.7;
+  }
+
+  .hero-watermark {
+    right: 24px;
   }
 }
 
+/* CELULARES */
 
-@media (max-width: 760px) {
-
+@media (max-width: 640px) {
   .container {
     width: min(calc(100% - 28px), var(--container));
   }
 
-  .section {
-    padding: 80px 0;
-  }
-
   .header-inner {
-    min-height: 68px;
+    min-height: 66px;
   }
 
-  .main-nav {
-    display: none;
-  }
-
-  .header-button {
-    min-height: 38px;
-    padding: 0 14px;
-
+  .header-link {
+    min-height: 39px;
+    padding: 0 13px;
     font-size: 0.75rem;
   }
 
   .hero {
-    min-height: 650px;
+    min-height: 455px;
   }
 
   .hero-content {
-    padding: 80px 0;
+    padding-block: 68px 75px;
   }
 
   .hero h1 {
-    font-size: clamp(3.1rem, 16vw, 5.2rem);
+    font-size: clamp(3.2rem, 15vw, 4.9rem);
   }
 
-  .hero-content > p {
-    font-size: 0.95rem;
+  .hero-decoration-one {
+    width: 250px;
+    height: 250px;
+    top: 165px;
+    right: -130px;
   }
 
-  .hero-points {
-    flex-direction: column;
-    gap: 8px;
+  .hero-decoration-two {
+    width: 170px;
+    height: 170px;
+    top: 205px;
+    right: -90px;
   }
 
-  .products-heading {
+  .hero-watermark {
+    right: 14px;
+    bottom: 16px;
+    font-size: 2.3rem;
+  }
+
+  .catalog-section {
+    padding: 62px 0 70px;
+  }
+
+  .section-heading {
     align-items: flex-start;
     flex-direction: column;
-    gap: 18px;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-card {
-    min-height: 420px;
-  }
-
-  .marketing-box {
-    padding: 55px 0;
-  }
-
-  .footer-content {
-    min-height: 130px;
-
-    align-items: flex-start;
-    justify-content: center;
-
-    flex-direction: column;
-
-    gap: 22px;
-  }
-}
-
-
-@media (max-width: 520px) {
-
-  .use-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .use-card {
-    min-height: 155px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .button {
-    width: 100%;
+    gap: 15px;
+    margin-bottom: 24px;
   }
 
   .section-heading h2 {
     font-size: 2.2rem;
   }
 
-  .marketing-box h2 {
-    font-size: 3rem;
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .product-image-area {
+    min-height: 225px;
+  }
+
+  .product-image-area img {
+    height: 200px;
+  }
+
+  .footer-main {
+    min-height: 120px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    padding-block: 22px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-legal p:last-child {
+    text-align: left;
   }
 }
 
-
-/* =========================================================
-   REDUÇÃO DE MOVIMENTO
-   ========================================================= */
+/* REDUÇÃO DE MOVIMENTO */
 
 @media (prefers-reduced-motion: reduce) {
-
   html {
     scroll-behavior: auto;
   }
 
   *,
-  *::before {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
