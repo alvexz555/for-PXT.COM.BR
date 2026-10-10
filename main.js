@@ -1,3 +1,4 @@
+
 import { getProducts } from "./catalog/products/index.js";
 import { createProductCard } from "./components/product-card.js";
 import {
@@ -9,7 +10,10 @@ function renderCatalog() {
   const grid = document.querySelector("#products-grid");
   const count = document.querySelector("#catalog-count");
 
-  if (!grid) return;
+  if (!grid) {
+    console.error("[PXT] Elemento #products-grid não encontrado.");
+    return;
+  }
 
   const products = getProducts();
 
@@ -33,61 +37,72 @@ function renderCatalog() {
     count.textContent =
       `${products.length} ${products.length === 1 ? "fone" : "fones"}`;
   }
+
+  console.info(`[PXT] ${products.length} produto(s) renderizado(s).`);
 }
 
 function initPXT() {
   captureReferral();
-  renderCatalog();
   initTracking();
+  renderCatalog();
 
-  console.info("[PXT] Catálogo iniciado.");
+  console.info("[PXT] Sistema iniciado.");
 }
-import { getProducts } from "./catalog/products/index.js";
-import { createProductCard } from "./components/product-card.js";
-import {
-  initTracking,
-  captureReferral
-} from "./services/tracking.js";
 
-function renderCatalog() {
-  const grid = document.querySelector("#products-grid");
-  const count = document.querySelector("#catalog-count");
+const products = [
+  {
+    id: "fone-01",
+    name: "Inova TWS Bluetooth 5.4 Branco",
+    description:
+      "Fone sem fio com resistência IPX5 anunciada e autonomia anunciada de até 20 horas. Confira os detalhes na oferta.",
+    image: "",
+    imageAlt: "Fone Inova TWS Bluetooth branco",
+    affiliateUrl: "https://meli.la/1CiJWuD"
+  },
+  {
+    id: "fone-02",
+    name: "Basike Clip-Ear Bluetooth TWS Preto",
+    description:
+      "Fone sem fio com design Clip-Ear, indicado para academia e treinos. Confira os detalhes na oferta.",
+    image: "",
+    imageAlt: "Fone Basike Clip-Ear Bluetooth preto",
+    affiliateUrl: "https://meli.la/1bZMGPx"
+  },
+  {
+    id: "fone-03",
+    name: "Fone Bluetooth Regulável com Microfone",
+    description:
+      "Fone Bluetooth com microfone, ajuste regulável e redução de ruído anunciada. Confira os detalhes na oferta.",
+    image: "",
+    imageAlt: "Fone Bluetooth regulável com microfone",
+    affiliateUrl: "https://meli.la/2RJzpx1"
+  }
 
-  if (!grid) return;
 
-  const products = getProducts();
+  // ADICIONE NOVOS PRODUTOS ABAIXO.
+  // Coloque uma vírgula depois do objeto anterior.
+];
 
-  grid.replaceChildren();
+export function getProducts() {
+  const usedIds = new Set();
 
-  if (products.length === 0) {
-    const empty = document.createElement("p");
-
-    empty.className = "empty-catalog";
-    empty.textContent =
-      "Estamos preparando nossa seleção de fones. Volte em breve.";
-
-    grid.appendChild(empty);
-  } else {
-    for (const product of products) {
-      grid.appendChild(createProductCard(product));
+  return products.filter(product => {
+    if (
+      !product ||
+      typeof product.id !== "string" ||
+      !product.id.trim() ||
+      typeof product.name !== "string" ||
+      !product.name.trim() ||
+      usedIds.has(product.id)
+    ) {
+      return false;
     }
-  }
 
-  if (count) {
-    count.textContent =
-      `${products.length} ${products.length === 1 ? "fone" : "fones"}`;
-  }
+    usedIds.add(product.id);
+    return true;
+  });
 }
 
-function initPXT() {
-  captureReferral();
-  renderCatalog();
-  initTracking();
-
-  console.info("[PXT] Catálogo iniciado.");
-}
-
-document.addEventListener("DOMContentLoaded", initPXT);
 function makePlaceholder(labelText) {
   const wrapper = document.createElement("div");
   wrapper.className = "placeholder-content";
@@ -122,11 +137,15 @@ function makeImageArea(product) {
   image.loading = "lazy";
   image.decoding = "async";
 
-  image.addEventListener("error", () => {
-    area.replaceChildren();
-    area.classList.add("image-placeholder");
-    area.appendChild(makePlaceholder("Imagem indisponível"));
-  }, { once: true });
+  image.addEventListener(
+    "error",
+    () => {
+      area.replaceChildren();
+      area.classList.add("image-placeholder");
+      area.appendChild(makePlaceholder("Imagem indisponível"));
+    },
+    { once: true }
+  );
 
   area.appendChild(image);
 
@@ -139,12 +158,14 @@ function makeAction(product) {
   action.className = "product-action";
   action.dataset.productId = product.id;
 
-  if (product.affiliateUrl) {
+  if (
+    typeof product.affiliateUrl === "string" &&
+    /^https:\/\/\S+$/i.test(product.affiliateUrl)
+  ) {
     action.href = product.affiliateUrl;
     action.target = "_blank";
     action.rel = "noopener noreferrer sponsored";
     action.classList.add("is-active", "affiliate-link");
-
     action.textContent = "Ver oferta no Mercado Livre ↗";
 
     action.setAttribute(
@@ -156,7 +177,6 @@ function makeAction(product) {
     action.classList.add("is-disabled");
     action.setAttribute("aria-disabled", "true");
     action.tabIndex = -1;
-
     action.textContent = "Oferta em preparação";
   }
 
@@ -165,7 +185,6 @@ function makeAction(product) {
 
 export function createProductCard(product) {
   const card = document.createElement("article");
-
   card.className = "product-card";
   card.dataset.productId = product.id;
 
@@ -198,8 +217,11 @@ export function createProductCard(product) {
 
   return card;
 }
+
 const REF_PARAMETER = "ref";
 const STORAGE_KEY = "pxt_ref";
+
+let trackingInitialized = false;
 
 export function captureReferral() {
   try {
@@ -208,6 +230,8 @@ export function captureReferral() {
 
     if (ref && /^[a-zA-Z0-9_-]{1,60}$/.test(ref)) {
       window.localStorage.setItem(STORAGE_KEY, ref);
+
+      console.info("[PXT] Origem registrada:", ref);
     }
   } catch (error) {
     console.warn(
@@ -226,8 +250,16 @@ function getReferral() {
 }
 
 export function initTracking() {
+  if (trackingInitialized) return;
+
+  trackingInitialized = true;
+
   document.addEventListener("click", event => {
-    const link = event.target.closest("a.affiliate-link");
+    const target = event.target;
+
+    if (!(target instanceof Element)) return;
+
+    const link = target.closest("a.affiliate-link");
 
     if (!link || !link.dataset.productId) return;
 
@@ -238,43 +270,15 @@ export function initTracking() {
     });
   });
 }
-export default {
-  id: "fone-01",
 
-  name: "Fone Bluetooth TWS 3 compatível AirPods, branco",
+  {
+    id: "fone-03",
+    name: "Nome do novo fone",
+    description: "Descrição curta do produto.",
+    image: "",
+    imageAlt: "Descrição da imagem do produto",
+    affiliateUrl: "COLE_O_LINK_AQUI"
+  }
 
-  description:
-    "Confira as características e os detalhes na página da oferta.",
 
-  image: "",
-
-  affiliateUrl: ""
-};
-export default {
-  id: "fone-02",
-
-  name: "Lenovo LE208 Bluetooth sem fio",
-
-  description:
-    "Confira as características e os detalhes na página da oferta.",
-
-  image: "",
-
-  affiliateUrl: ""
-};
-import fone01 from "./fone-01.js";
-import fone02 from "./fone-02.js";
-
-const products = [
-  fone01,
-  fone02
-];
-
-export function getProducts() {
-  return products.filter(product =>
-    product &&
-    product.id &&
-    product.name
-  );
-}
-document.addEventListener("DOMContentLoaded", initPXT);
+document.addEventListener("DOMContentLoaded", initPXT, { once: true });
