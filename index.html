@@ -3,105 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="PXT Fones. Uma seleção de fones para ouvir melhor, jogar, estudar e viver sua rotina com mais liberdade.">
-  <meta name="theme-color" content="#07080d">
+
+  <meta
+    name="description"
+    content="PXT Fones: encontre seu próximo fone e confira a oferta no Mercado Livre."
+  >
+
+  <meta name="theme-color" content="#001433">
+
   <title>PXT Fones | Pixel Story</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/main.js"></script>
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="PXT Fones">
-        <span class="brand-pixel">PXT</span><span>Fones</span>
+        <span class="brand-mark">PXT</span>
+        <span>Fones</span>
       </a>
-      <nav class="main-nav" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
-        <a href="#fones">Fones</a>
-        <a href="#escolha">Escolha</a>
-      </nav>
-      <a class="header-button" href="#fones">Encontrar meu fone</a>
+
+      <a class="header-link" href="#catalogo">
+        Ver catálogo <span aria-hidden="true">↓</span>
+      </a>
     </div>
   </header>
 
   <main>
-    <section id="inicio" class="hero">
-      <div class="hero-glow"></div>
+    <section class="hero" id="inicio">
+      <div class="hero-decoration hero-decoration-one" aria-hidden="true"></div>
+      <div class="hero-decoration hero-decoration-two" aria-hidden="true"></div>
+
       <div class="container hero-content">
-        <span class="eyebrow">PIXEL STORY • PXT FONES</span>
-        <h1>O fone certo muda<br><span>o jeito de ouvir.</span></h1>
-        <p>Uma seleção direta de fones para música, jogos, estudos, trabalho e rotina. Sem catálogo infinito. Só opções que merecem sua atenção.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#fones">Ver fones</a>
-          <a class="button button-secondary" href="#escolha">Qual combina comigo?</a>
-        </div>
-        <div class="hero-points" aria-label="Diferenciais">
-          <span>🎧 Foco em áudio</span>
-          <span>↗ Links diretos</span>
-          <span>◈ Seleção simples</span>
-        </div>
+        <p class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          PIXEL STORY · PXT FONES
+        </p>
+
+        <h1>
+          Seu novo fone<br>
+          <span>tá aqui.</span>
+        </h1>
+
+        <p class="hero-description">
+          Uma seleção direta para encontrar seu próximo fone
+          sem complicar a busca.
+        </p>
+
+        <a class="button button-primary" href="#catalogo">
+          Ver catálogo de fones
+          <span aria-hidden="true">↘</span>
+        </a>
+
+        <p class="hero-note">
+          Consulte preço, disponibilidade e detalhes atualizados
+          na página da oferta.
+        </p>
+      </div>
+
+      <div class="hero-watermark" aria-hidden="true">
+        PXT <span>/ AUDIO</span>
       </div>
     </section>
 
-    <section id="escolha" class="choice-section section">
+    <section class="catalog-section" id="catalogo">
       <div class="container">
         <div class="section-heading">
-          <span class="section-label">COMECE PELO SEU USO</span>
-          <h2>Você não precisa de qualquer fone.</h2>
-          <p>Precisa de um que faça sentido para o que você realmente vai fazer com ele.</p>
-        </div>
-        <div class="use-grid">
-          <a class="use-card" href="#fones" data-use="musica"><span>♫</span><strong>Música</strong><small>Para curtir suas faixas.</small></a>
-          <a class="use-card" href="#fones" data-use="jogos"><span>◉</span><strong>Jogos</strong><small>Imersão e presença no áudio.</small></a>
-          <a class="use-card" href="#fones" data-use="estudos"><span>⌁</span><strong>Estudos</strong><small>Concentração sem complicação.</small></a>
-          <a class="use-card" href="#fones" data-use="rotina"><span>↗</span><strong>Rotina</strong><small>Praticidade para o dia a dia.</small></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="fones" class="products-section section">
-      <div class="container">
-        <div class="section-heading products-heading">
           <div>
-            <span class="section-label">SELEÇÃO PXT</span>
-            <h2>Fones em destaque.</h2>
-            <p>Escolha uma opção e veja o produto no marketplace.</p>
+            <p class="section-label">SELEÇÃO PXT</p>
+            <h2>Escolha seu próximo fone.</h2>
+
+            <p class="section-description">
+              Encontre uma opção e confira os detalhes no marketplace.
+            </p>
           </div>
-          <span class="product-count" id="product-count">0 fones</span>
-        </div>
-        <div id="product-grid" class="products-grid" aria-live="polite"></div>
-      </div>
-    </section>
 
-    <section class="marketing-section section">
-      <div class="container">
-        <div class="marketing-box">
-          <span class="section-label">PXT FONES</span>
-          <h2>Menos procura.<br><span>Mais decisão.</span></h2>
-          <p>O PXT existe para encurtar o caminho entre “preciso de um fone” e “esse aqui faz sentido para mim”.</p>
-          <a class="button button-primary" href="#fones">Explorar seleção</a>
+          <span
+            class="catalog-count"
+            id="catalog-count"
+            aria-live="polite"
+          >
+            Carregando...
+          </span>
         </div>
-      </div>
-    </section>
 
-    <section class="about-section section">
-      <div class="container about-grid">
-        <div>
-          <span class="section-label">SOBRE O PXT</span>
-          <h2>Um catálogo pequeno por escolha.</h2>
-        </div>
-        <p>Em vez de misturar dezenas de categorias, esta versão do Pixel Story tem um único foco: fones. A ideia é testar uma experiência de descoberta, curadoria e acesso direto aos produtos.</p>
+        <div
+          class="products-grid"
+          id="products-grid"
+          aria-live="polite"
+        ></div>
+
+        <p class="catalog-note">
+          Os preços, o estoque e as condições podem mudar.
+          Confira as informações atualizadas na página do vendedor.
+        </p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-content">
-      <div><div class="brand"><span class="brand-pixel">PXT</span><span>Fones</span></div><p>Pixel Story • foco em fones.</p></div>
-      <a href="#inicio">Voltar ao topo ↑</a>
-    </div>
-    <div class="container footer-bottom"><p>© 2026 Pixel Story. Todos os direitos reservados.</p></div>
-  </footer>
+    <div class="container footer-main">
+      <div>
+        <a class="brand" href="#inicio" aria-label="PXT Fones">
+          <span class="brand-mark">PXT</span>
+          <span>Fones</span>
+        </a>
 
-  <script src="js/main.js"></script>
+        <p class="footer-tagline">Pixel Story · foco em áudio.</p>
+      </div>
+
+      <a class="back-to-top" href="#inicio">
+        Voltar ao topo ↑
+      </a>
+    </div>
+
+    <div class="container footer-legal">
+      <p>© 2026 Pixel Story. Todos os direitos reservados.</p>
+
+      <p>
+        Alguns links são de afiliados. Podemos receber comissão
+        por compras qualificadas, sem custo adicional para você.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
