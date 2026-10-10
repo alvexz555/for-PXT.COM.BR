@@ -5,7 +5,7 @@ const products = [
     name: "Inova TWS Bluetooth 5.4 Branco",
     description:
       "Fone sem fio com resistência IPX5 anunciada e autonomia anunciada de até 20 horas. Confira os detalhes na oferta.",
-    image: "",
+    image: "./images/D_NQ_NP_2X_795772-MLA114297457846_082026-F.webp",
     imageAlt: "Fone Inova TWS Bluetooth branco",
     affiliateUrl: "https://meli.la/1CiJWuD"
   },
