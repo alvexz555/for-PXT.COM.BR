@@ -35,6 +35,15 @@ const products = [
     image: "./images/D_NQ_NP_2X_690729-MLA118811431933_102026-F.webp",
     imageAlt: "Fone Gamer Sem Fio, Preto",
     affiliateUrl: "https://meli.la/2mbgiHP"
+  },
+  {
+    id: "fone-05",
+    name: "2 Fones P2 Premium Cabo Trançado Reforçado Microfone Pc 1.2m",
+    description:
+      "kit com 2 fones ideal pra quem deseja ter um reserva Confira os detalhes na oferta.",
+    image: "./images/D_NQ_NP_2X_965949-MLB118972042413_102026-F-2-fones-p2-premium-cabo-trancado-reforcado-microfone-pc-12m.webp",
+    imageAlt: "2 Fones P2 Premium",
+    affiliateUrl: "https://meli.la/1mzjkLi"
   }
 ];
 
