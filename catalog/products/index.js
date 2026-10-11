@@ -23,7 +23,7 @@ const products = [
     name: "Fone Bluetooth Regulável com Microfone",
     description:
       "Fone Bluetooth com microfone, ajuste regulável e redução de ruído anunciada. Confira os detalhes na oferta.",
-    image: "",
+    image: "/images/D_NQ_NP_2X_638162-MLB93167699846_092025-F.webp",
     imageAlt: "Fone Bluetooth regulável com microfone",
     affiliateUrl: "https://meli.la/2RJzpx1"
   }
