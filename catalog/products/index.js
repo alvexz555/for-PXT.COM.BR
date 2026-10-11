@@ -22,12 +22,22 @@ const products = [
     id: "fone-03",
     name: "Fone Bluetooth Regulável com Microfone",
     description:
-      "Fone Bluetooth com microfone, ajuste regulável e redução de ruído anunciada. Confira os detalhes na oferta.",
+      "Fone Bluetooth com microfone, ajuste regulável e redução de ruído anunciada Confira os detalhes na oferta.",
     image: "./images/D_NQ_NP_2X_638162-MLB93167699846_092025-F-fone-ouvido-bluetooth-regulavel-com-microfone-e-reduco-ruid.webp",
     imageAlt: "Fone Bluetooth regulável com microfone",
     affiliateUrl: "https://meli.la/2RJzpx1"
+  },
+  {
+    id: "fone-04",
+    name: "Fone de Ouvido TWS In-ear Gamer Sem Fio, Preto, com Microfone e LED Para Esporte, da 3Tech",
+    description:
+      "A bateria com autonomia de 8 horas permite o uso contínuo em atividades esportivas e rotinas de jogos prolongadas. Confira os detalhes na oferta.",
+    image: "./images/D_NQ_NP_2X_690729-MLA118811431933_102026-F.webp",
+    imageAlt: "Fone Gamer Sem Fio, Preto",
+    affiliateUrl: "https://meli.la/2mbgiHP"
   }
 ];
+
 
 export function getProducts() {
   const usedIds = new Set();
