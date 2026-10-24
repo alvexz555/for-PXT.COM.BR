@@ -50,7 +50,7 @@ const products = [
     name: "Fone De Ouvido Sem Fio Bluetooth",
     description:
       "Longa Duração Recarregável Cor Branco",
-    image: "./fone branquinho.webp",
+    image: "./images/fone branquinho.webp",
     imageAlt: "fone Bluetooth premium",
     affiliateUrl: "https://meli.la/1j3gwez"
   }
