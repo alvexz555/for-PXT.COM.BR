@@ -44,6 +44,15 @@ const products = [
     image: "./images/D_NQ_NP_2X_965949-MLB118972042413_102026-F-2-fones-p2-premium-cabo-trancado-reforcado-microfone-pc-12m.webp",
     imageAlt: "2 Fones P2 Premium",
     affiliateUrl: "https://meli.la/1mzjkLi"
+  },
+  {
+    id: "fone-06",
+    name: "Fone De Ouvido Sem Fio Bluetooth",
+    description:
+      "Longa Duração Recarregável Cor Branco",
+    image: "./fone branquinho.webp",
+    imageAlt: "fone Bluetooth premium",
+    affiliateUrl: "https://meli.la/1j3gwez"
   }
 ];
 
