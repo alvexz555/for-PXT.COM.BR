@@ -58,7 +58,7 @@ const products = [
     id: "fone-07",
     name: "Fone gamer a prova de respingos",
     description:
-      "Longa Duração Recarregável Cor Branco",
+      "Fone de Ouvido X15 Tws Gamer, Um ótimo modelo para você que deseja jogar com qualidade sonora, ou pra você que pretende presentear algum Gamer.",
     image: "./images/respingo.webp",
     imageAlt: "Fone Gamer Bluetooth X15 Aprova De Respingos Dágua Led",
     affiliateUrl: "https://meli.la/25coN6J"
