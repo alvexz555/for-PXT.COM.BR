@@ -53,6 +53,15 @@ const products = [
     image: "./images/fone branquinho.webp",
     imageAlt: "fone Bluetooth premium",
     affiliateUrl: "https://meli.la/1j3gwez"
+  },
+  {
+    id: "fone-07",
+    name: "Fone gamer a prova de respingos",
+    description:
+      "Longa Duração Recarregável Cor Branco",
+    image: "./images/respingo.webp",
+    imageAlt: "Fone Gamer Bluetooth X15 Aprova De Respingos Dágua Led",
+    affiliateUrl: "https://meli.la/25coN6J"
   }
 ];
 
