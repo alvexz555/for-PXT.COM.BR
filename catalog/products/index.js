@@ -64,6 +64,15 @@ const products = [
     affiliateUrl: "https://meli.la/2zgUVys"
   },
   {
+    id: "fone-09",
+    name: "Headset Gamer Havit H2232D Over-Ear RGB",
+    description:
+      "Headset gamer com conchas over-ear, iluminação RGB, microfone flexível e cabo de 2,2 m. Possui conexão com fio e drivers de 50 mm. Encontrado por R$ 89,79 no anúncio enviado; preço e disponibilidade podem mudar.",
+    image: "https://fujiokadistribuidor.vteximg.com.br/arquivos/ids/389879-1000-1000/p_59367_alta_3.jpg?v=638603833063300000",
+    imageAlt: "Headset gamer Havit H2232D preto com iluminação RGB e microfone flexível",
+    affiliateUrl: "https://meli.la/2rQrxHz"
+  },
+  {
     id: "fone-07",
     name: "Fone gamer a prova de respingos",
     description:
