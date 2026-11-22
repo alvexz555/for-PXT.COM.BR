@@ -58,7 +58,7 @@ const products = [
     id: "fone-08",
     name: "QKZ AK6 Ares In-Ear com Microfone e Case",
     description:
-      "Fone com fio, encaixe in-ear, microfone integrado e conexão P2. Acompanha case para transporte. Confira preço e condições atualizadas na oferta.",
+      "Fone com fio e encaixe in-ear, microfone integrado e conexão P2. Acompanha case, ponteiras extras e suportes de silicone. Encontrado por R$ 34,99 no anúncio enviado; preço e disponibilidade podem mudar.",
     image: "https://judgeme.imgix.net/kz-music-store/1754776170__img_5698__original.jpeg?auto=format&w=1024",
     imageAlt: "Fone QKZ AK6 Ares preto e dourado com case de transporte",
     affiliateUrl: "https://meli.la/2zgUVys"
