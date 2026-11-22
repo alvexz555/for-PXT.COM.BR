@@ -509,13 +509,18 @@ img {
 
 .product-action {
   display: flex;
+  flex: 0 0 48px;
+  align-self: stretch;
   width: 100%;
-  min-height: 46px;
+  min-width: 0;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  white-space: nowrap;
 
   margin-top: 21px;
-  padding: 10px 13px;
+  padding: 0 12px;
 
   border: 1px solid var(--pxt-line);
   border-radius: 12px;
@@ -525,6 +530,7 @@ img {
 
   text-align: center;
   font-size: 0.77rem;
+  line-height: 1;
   font-weight: 850;
 }
 
